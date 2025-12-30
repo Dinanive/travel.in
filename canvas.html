@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Trip Canvas - Collaborative Travel Planner</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "primary-teal": "#2dd4bf", // Adding the teal accent as requested in description
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2d2016",
+                        "surface-darker": "#1a120b",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for dark mode feeling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #2d2016;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #493222;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #da5e0b;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header
+        class="flex-none flex items-center justify-between border-b border-[#493222] bg-surface-darker px-6 py-3 z-50">
+        <!-- Logo & Title Area -->
+        <div class="flex items-center gap-6">
+            <div class="flex items-center gap-3">
+                <a class="size-8 text-primary" href="index.html">
+                    <svg fill="none" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <path clip-rule="evenodd"
+                            d="M24 18.4228L42 11.475V34.3663C42 34.7796 41.7457 35.1504 41.3601 35.2992L24 42V18.4228Z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                        <path clip-rule="evenodd"
+                            d="M24 8.18819L33.4123 11.574L24 15.2071L14.5877 11.574L24 8.18819ZM9 15.8487L21 20.4805V37.6263L9 32.9945V15.8487ZM27 37.6263V20.4805L39 15.8487V32.9945L27 37.6263ZM25.354 2.29885C24.4788 1.98402 23.5212 1.98402 22.646 2.29885L4.98454 8.65208C3.7939 9.08038 3 10.2097 3 11.475V34.3663C3 36.0196 4.01719 37.5026 5.55962 38.098L22.9197 44.7987C23.6149 45.0671 24.3851 45.0671 25.0803 44.7987L42.4404 38.098C43.9828 37.5026 45 36.0196 45 34.3663V11.475C45 10.2097 44.2061 9.08038 43.0155 8.65208L25.354 2.29885Z"
+                            fill="currentColor" fill-rule="evenodd"></path>
+                    </svg>
+                </a>
+                <div>
+                    <h2 class="text-white text-lg font-bold leading-tight tracking-tight">Tokyo Drift 2024</h2>
+                    <p class="text-[#cba890] text-xs font-medium">Oct 12 - Oct 20</p>
+                </div>
+            </div>
+            <!-- Vertical Separator -->
+            <div class="h-8 w-px bg-[#493222] mx-2 hidden md:block"></div>
+            <!-- Budget Tracker (Visible on larger screens) -->
+            <div class="hidden md:flex flex-col w-64 gap-1.5">
+                <div class="flex justify-between text-xs font-medium text-white/80">
+                    <span>Shared Budget</span>
+                    <span>$2,450 / $5,000</span>
+                </div>
+                <div class="h-2 w-full bg-[#493222] rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-primary to-[#ff8c42] w-[49%] rounded-full"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Right Actions: Avatars & Buttons -->
+        <div class="flex items-center gap-6">
+            <!-- Presence / Avatars -->
+            <div class="flex -space-x-2 overflow-hidden pl-2">
+                <div class="relative group cursor-pointer transition-transform hover:-translate-y-1">
+                    <div class="size-9 rounded-full ring-2 ring-background-dark bg-cover bg-center"
+                        data-alt="Portrait of a young woman smiling"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDGfmhAxVj12aGx0S5U400tNcQh4S7DS3hOt5334wsyaLoO3DJI0VPWvCpbTR9mhJCVnrFRH1pGcL6sle6BI-QrwQ3hJ9wgzohpicBDvJRbo_92RcNz7JlK82ziwvakOB-RwByzXV3t8ARaC6e4CzMllfIXR8180k40BAu7gfkPA9eIL11Dqg9L1STfCQ6hm6nzVqfb6T8iAL5-V0Jof7NjTfS8i-QnXX2i2iBuc4U-0wxjBTvr6yrYmfiDsL71dZ6f-hUi0Foc-g');">
+                    </div>
+                    <span
+                        class="absolute bottom-0 right-0 block size-2.5 rounded-full bg-primary-teal ring-2 ring-background-dark"></span>
+                </div>
+                <div class="relative group cursor-pointer transition-transform hover:-translate-y-1">
+                    <div class="size-9 rounded-full ring-2 ring-background-dark bg-cover bg-center"
+                        data-alt="Portrait of a young man with a beard"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBFqArLyxKY4-EhXX5R6pOnreG2dZOh6dizktpMAoTAZQ0dRxH09pH3d-NShc4viMAtu3oKzt31tq7D9DkblMbZPUtiI53-EUB1RAF0UOb8weqVTjC0-i4mUoCzgfYRq2Pdy7fyVFw9DPv8GFT_wtAoiXLLInigvfPB1vo_iDC3BOCVsB9SVz8idX8Me2J-ksSYQ23BrYiTOFnWvvRbewu2PjprWOtzGiHEAHReqHx528VcSm-ZDYmPCxSpDvLWCKOeG7lHXA76NA');">
+                    </div>
+                    <span
+                        class="absolute bottom-0 right-0 block size-2.5 rounded-full bg-primary-teal ring-2 ring-background-dark"></span>
+                </div>
+                <div class="relative group cursor-pointer transition-transform hover:-translate-y-1">
+                    <div class="size-9 rounded-full ring-2 ring-background-dark bg-cover bg-center"
+                        data-alt="Portrait of a woman with short hair"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBPMwp_WclrEt6WfjLOHnXMeNd9KeWIWz2cAz2MmHGu4WGjE5fWCC5Kpoo70o6Hbq6Mm4Piep3sUdtkzyLCIyPz5GhAUBFR7_qeleONCQfdb5y-Ju9Rn-cnPXfBh3yiYBZmqzaUTVNvFxC0zfR7Yg16TOlZ9y01g_KDXUC9FHDZokEk4AQtn5F0Z2KXO9l2m1BiUjyqc3cwacYtFAx7K7LIFV3GqccPF-pfGcRmG7jm_W_PslGG-DfjzPn7bm-3gSwiexCh_uV0tw');">
+                    </div>
+                    <span
+                        class="absolute bottom-0 right-0 block size-2.5 rounded-full bg-gray-500 ring-2 ring-background-dark"></span>
+                </div>
+                <div
+                    class="flex items-center justify-center size-9 rounded-full ring-2 ring-background-dark bg-[#493222] text-[#cba890] text-xs font-bold hover:bg-primary hover:text-white transition-colors cursor-pointer">
+                    +2
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <button
+                    class="size-10 flex items-center justify-center rounded-lg bg-[#2d2016] text-white hover:bg-[#3d2b1f] transition-colors border border-[#493222]">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <button
+                    class="h-10 px-5 flex items-center gap-2 rounded-lg bg-primary hover:bg-orange-700 text-white font-bold text-sm transition-colors shadow-lg shadow-orange-900/20">
+                    <span class="material-symbols-outlined text-[18px]">share</span>
+                    <span>Share Canvas</span>
+                </button>
+            </div>
+        </div>
+    </header>
+    <!-- Main Content Area: Split View -->
+    <main class="flex flex-1 overflow-hidden relative">
+        <!-- Left Panel: Interactive Map -->
+        <div
+            class="relative w-full md:w-[45%] lg:w-[40%] xl:w-[35%] h-full bg-surface-darker border-r border-[#493222] flex flex-col group/map">
+            <!-- Map Overlay UI -->
+            <div class="absolute top-4 left-4 right-4 z-10 flex gap-2">
+                <div class="relative flex-1">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-white/50 text-xl">search</span>
+                    <input
+                        class="w-full bg-[#2d2016]/90 backdrop-blur-md border border-[#493222] rounded-lg pl-10 pr-4 py-2.5 text-sm text-white placeholder-white/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all shadow-lg"
+                        placeholder="Search places in Tokyo..." type="text" />
+                </div>
+                <button
+                    class="bg-[#2d2016]/90 backdrop-blur-md border border-[#493222] rounded-lg px-3 py-2 text-white hover:bg-[#3d2b1f] transition-colors shadow-lg">
+                    <span class="material-symbols-outlined">tune</span>
+                </button>
+            </div>
+            <!-- Map Background Image (Simulated Map) -->
+            <div class="w-full h-full bg-cover bg-center relative filter brightness-[0.85] saturate-[0.8]"
+                data-alt="Aerial view of Tokyo streets at night" data-location="Tokyo"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC7fKIjTCSkCMLLZmUCKPrhaifcKQz2ZtdqJ2PuJa8gL0BNhQ5nZqsaEkhRYo-fvA76861AHVSeJ6uAEobT0FXeH2WoKd-TA_ra66wi2CL7YEL_9RHbUxHUE5IwXp-EJJRq5F33frGSYrnRetp3BVeHr-yYySKp1t5fIGk1FfULlGUvtp-DKoS9fofMHrMqh-ZFPlsC5Kcoyf4cWmPizyMZznuEq6kL_jVqpU-sjKvJ25mcBAeKJD4ZJpwxfrCWltMt07V7BOKwXA');">
+                <!-- Map Pins -->
+                <div class="absolute top-[40%] left-[30%] flex flex-col items-center group cursor-pointer hover:z-20">
+                    <div
+                        class="px-3 py-1 bg-white text-black text-xs font-bold rounded shadow-lg mb-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        TeamLab Planets</div>
+                    <div
+                        class="size-8 rounded-full bg-primary border-2 border-white flex items-center justify-center text-white font-bold shadow-lg transform group-hover:scale-125 transition-transform">
+                        1</div>
+                </div>
+                <div class="absolute top-[55%] left-[60%] flex flex-col items-center group cursor-pointer hover:z-20">
+                    <div
+                        class="px-3 py-1 bg-white text-black text-xs font-bold rounded shadow-lg mb-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Omakase Sushi</div>
+                    <div
+                        class="size-8 rounded-full bg-surface-dark border-2 border-[#cba890] flex items-center justify-center text-[#cba890] font-bold shadow-lg transform group-hover:scale-125 transition-transform hover:bg-primary hover:text-white hover:border-white">
+                        2</div>
+                </div>
+                <div class="absolute top-[25%] left-[55%] flex flex-col items-center group cursor-pointer hover:z-20">
+                    <div
+                        class="px-3 py-1 bg-white text-black text-xs font-bold rounded shadow-lg mb-1 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                        Shibuya Sky</div>
+                    <div
+                        class="size-8 rounded-full bg-surface-dark border-2 border-[#cba890] flex items-center justify-center text-[#cba890] font-bold shadow-lg transform group-hover:scale-125 transition-transform hover:bg-primary hover:text-white hover:border-white">
+                        3</div>
+                </div>
+                <!-- Floating Map Controls -->
+                <div class="absolute bottom-6 right-6 flex flex-col gap-2">
+                    <button
+                        class="size-10 bg-white text-gray-800 rounded-lg shadow-xl flex items-center justify-center hover:bg-gray-100 transition-colors">
+                        <span class="material-symbols-outlined">add</span>
+                    </button>
+                    <button
+                        class="size-10 bg-white text-gray-800 rounded-lg shadow-xl flex items-center justify-center hover:bg-gray-100 transition-colors">
+                        <span class="material-symbols-outlined">remove</span>
+                    </button>
+                    <button
+                        class="size-10 bg-white text-gray-800 rounded-lg shadow-xl flex items-center justify-center hover:bg-gray-100 transition-colors mt-2">
+                        <span class="material-symbols-outlined">my_location</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Right Panel: Activity Canvas -->
+        <div class="flex-1 bg-background-dark flex flex-col min-w-0">
+            <!-- Canvas Toolbar -->
+            <div class="h-14 border-b border-[#493222] flex items-center justify-between px-6 bg-[#2d2016]">
+                <div class="flex gap-4 text-sm font-medium">
+                    <a class="text-white border-b-2 border-primary pb-4 -mb-4 px-1" href="itinerary.html">Itinerary</a>
+                    <a class="text-[#cba890] hover:text-white transition-colors pb-4 -mb-4 px-1" href="vault.html">The
+                        Vault</a>
+                    <a class="text-[#cba890] hover:text-white transition-colors pb-4 -mb-4 px-1"
+                        href="expenses.html">Expenses</a>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-[#cba890] uppercase tracking-wider font-bold mr-2">Sort by</span>
+                    <select
+                        class="bg-[#1a120b] border border-[#493222] text-white text-xs rounded px-2 py-1.5 focus:outline-none focus:border-primary">
+                        <option>Time</option>
+                        <option>Price</option>
+                        <option>Rating</option>
+                    </select>
+                </div>
+            </div>
+            <!-- Canvas Scrollable Area -->
+            <div class="flex-1 overflow-y-auto p-6 relative">
+                <!-- Day Heading -->
+                <div
+                    class="flex items-center gap-4 mb-6 sticky top-0 z-10 py-2 bg-background-dark/95 backdrop-blur-sm w-full">
+                    <h3 class="text-xl font-bold text-white">Day 1 <span
+                            class="text-[#cba890] font-normal text-base ml-2">Saturday, Oct 12</span></h3>
+                    <div class="h-px flex-1 bg-[#493222]"></div>
+                    <button
+                        class="text-xs font-bold text-primary hover:text-orange-400 uppercase tracking-wider flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">add</span> Add Activity
+                    </button>
+                </div>
+                <!-- Masonry / Grid for Activities -->
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-6 pb-20">
+                    <!-- Card 1 -->
+                    <div
+                        class="group bg-[#2d2016] rounded-xl overflow-hidden border border-[#493222] hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(218,94,11,0.15)] flex flex-col relative">
+                        <div
+                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1 z-10">
+                            <span class="size-2 rounded-full bg-primary"></span> 10:00 AM
+                        </div>
+                        <div class="absolute top-3 right-3 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <div
+                                class="bg-white text-black p-1.5 rounded-lg shadow-lg cursor-grab active:cursor-grabbing">
+                                <span class="material-symbols-outlined text-sm">drag_indicator</span>
+                            </div>
+                        </div>
+                        <div class="h-40 bg-cover bg-center relative"
+                            data-alt="Immersive digital art exhibition with lights"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDnRlptcEDaBF0O9dw7e6safBLWJdM5UQEUkOCnubsg54QkvILjoVvMk-smRwil6Si_3avAGTF_o3iKNFlRYkSJHr-noNYYGglgcXZvt79l69xCFwaiyBGY-1hdZGTI9KXMm2R1vuIy2rfRCPq4E15M0NVL7juyVTut-MhtKs5a0osj37aZYNGf0AHiode9mLl5HsnfCXYrbo69VV1PbgwVfya6LXuGTHH0i2iZfuVXYDh8o4x7Pn47POhdLskAA6xxTDa9egt9yQ');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#2d2016] to-transparent"></div>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-white font-bold text-lg leading-tight">TeamLab Planets</h4>
+                                <span
+                                    class="bg-[#1a120b] text-[#cba890] text-xs font-bold px-2 py-1 rounded border border-[#493222]">$35/pp</span>
+                            </div>
+                            <p class="text-[#cba890] text-sm line-clamp-2">Immersive digital art museum. Requires
+                                barefoot entry. Pre-book tickets!</p>
+                            <div class="mt-auto pt-3 flex items-center justify-between border-t border-[#493222]">
+                                <div class="flex -space-x-1.5">
+                                    <div class="size-6 rounded-full ring-2 ring-[#2d2016] bg-cover bg-center"
+                                        data-alt="User avatar"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAhO-9OmwgPrUenyvAUc-GJkOmJIkUDGBoamkz3btF5Gyar_MDgvpeNdQDEHBOpeEzgXNHnfSnPdhwraKQFVJeA0QWflGXSR7JSAvScuyh0xxuzA_jnhhUsPcBGy6OI3QB0tQgEgs_w7uSvTGW9AJ-LUM7SMl5DI3RsRJpKKq-XBAOo8s9gcNOzccdP8mV5vc7p3ZKVtmn-5BBHFbOkWmnxNmH65gH2rPXHtrwg9W_2R10jb6rip7cWYuAGSI4Rv3NfQtSFhjnLoA');">
+                                    </div>
+                                    <div class="size-6 rounded-full ring-2 ring-[#2d2016] bg-cover bg-center"
+                                        data-alt="User avatar"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBq-6u0mLOAtqJO92z1cYvTdPfJkTYQfR7rVsC1DAXrFKk96k_tcRuHO4dA_Z9f_ALskz4mcL5baGZPWjWGVmpiZJLOhY3GP6e0QMTzGwtSr7DWksvXx4Sc2Y0_7cRwqSY_YYGlg7LvJlxpZRXzXMb1yrsYNmos6qpj16P2wVi0YPMY1whc567YGQ4uBkWa127mMgcCp579z6mioWPGB_aMl1KawXSpLoqo6O5dl6Jhsgar9Vke55b4VYpdDWFcu_eLlHU_EQqSPg');">
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">chat_bubble</span></button>
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">more_horiz</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="group bg-[#2d2016] rounded-xl overflow-hidden border border-[#493222] hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(218,94,11,0.15)] flex flex-col relative">
+                        <div
+                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1 z-10">
+                            <span class="size-2 rounded-full bg-primary-teal"></span> 7:00 PM
+                        </div>
+                        <div class="h-40 bg-cover bg-center relative" data-alt="Fresh sushi served on a wooden plate"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD_MPUtvBVLU-YldSYjP8ngnecRpCRQyMjS3aVwJyWkJb495FTC2RDvOIxhxFzSaULEKeI9Xvt8sKJg2KNW1XbbrLQy5XyQ_ak2MFTV_pgkNxTG6Nx_eqM6Rn2YmAV9DSQwYmaj3qcpezzXm3K8b3BQII-tgGA-HzJiYSRTfqMRhD6pPg_ZAypOzfO-zPKZT_uSTAvTQUPboahv2LUk9Not1e2t-81WvVJOb_vJg0lAU53lI_LzIW1rJ_4qu0yf94Qyvz6xCZBSvA');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#2d2016] to-transparent"></div>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-white font-bold text-lg leading-tight">Omakase Sushi</h4>
+                                <span
+                                    class="bg-[#1a120b] text-[#cba890] text-xs font-bold px-2 py-1 rounded border border-[#493222]">$120/pp</span>
+                            </div>
+                            <p class="text-[#cba890] text-sm line-clamp-2">High-end sushi experience in Ginza. 12
+                                courses. Reservation confirmed.</p>
+                            <div class="mt-auto pt-3 flex items-center justify-between border-t border-[#493222]">
+                                <div
+                                    class="flex items-center gap-1 text-primary-teal text-xs font-bold bg-primary-teal/10 px-2 py-1 rounded">
+                                    <span class="material-symbols-outlined text-sm">check_circle</span> Booked
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">chat_bubble</span></button>
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">more_horiz</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="group bg-[#2d2016] rounded-xl overflow-hidden border border-[#493222] hover:border-primary/50 transition-all hover:shadow-[0_0_20px_rgba(218,94,11,0.15)] flex flex-col relative">
+                        <div
+                            class="absolute top-3 left-3 bg-black/60 backdrop-blur-md text-white text-xs font-bold px-2 py-1 rounded flex items-center gap-1 z-10">
+                            <span class="size-2 rounded-full bg-purple-500"></span> Sunset
+                        </div>
+                        <div class="h-40 bg-cover bg-center relative"
+                            data-alt="View of city skyline from an observation deck"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBR5NUB2mwY6hO37_Xe--ipihL3UOmc_ZFk0WTryWBIrqq5plDAHqEK6ETMsX0FdZ_1zDHSCFIw83Mo4LE3ldYtVCYVkQ1m5RLaidxFUty8T0Bvz58QR4Io9v_JiwQ-SJG05EfodjMLNB8p_O9mfOH3rExhXsdemYU-3soNbd2uuzw8Ep8AufU63K-u2Q-VfX_r4YeHad1gyheAmzmBGr2BdZ6s8iWW0zP01AIOnTvJWxq20oYNS5_h9O90qtceq_oUWuP5Wi56hw');">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#2d2016] to-transparent"></div>
+                        </div>
+                        <div class="p-4 flex flex-col gap-2 flex-1">
+                            <div class="flex justify-between items-start">
+                                <h4 class="text-white font-bold text-lg leading-tight">Shibuya Sky Deck</h4>
+                                <span
+                                    class="bg-[#1a120b] text-[#cba890] text-xs font-bold px-2 py-1 rounded border border-[#493222]">$20/pp</span>
+                            </div>
+                            <p class="text-[#cba890] text-sm line-clamp-2">Observation deck with 360-degree views. Best
+                                time to go is right before sunset.</p>
+                            <div class="mt-auto pt-3 flex items-center justify-between border-t border-[#493222]">
+                                <div class="flex -space-x-1.5">
+                                    <div class="size-6 rounded-full ring-2 ring-[#2d2016] bg-cover bg-center"
+                                        data-alt="User avatar"
+                                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChlsuUsubtREm0lA16FF2MG9pFY_m8ysL5ynBTZH0kwZrsVgVOz-aTzU1wHqldc6SUrL_LBhecGmmB2XVEr--yxzFoWWne8l9r6tJ4ezxFaBoRej3fQLi-drems3WJFiYRzK9hnIDcrbUY2aVIfj9vKdFydwf-aqmz_2yGhHLW8vi1WOrKZIq1fTpWLQagnNtSTu0_9KeMxuaZV8GJwnTUJNdaXCmAnrHHqsids97yCkkaY9JWe3WCZG9u9XjOdeaKBOenCMJKIw');">
+                                    </div>
+                                </div>
+                                <div class="flex gap-2">
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">chat_bubble</span></button>
+                                    <button class="text-[#cba890] hover:text-white transition-colors"><span
+                                            class="material-symbols-outlined text-lg">more_horiz</span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Floating FAB -->
+                <button
+                    class="fixed bottom-8 right-8 z-30 size-14 bg-primary hover:bg-orange-600 text-white rounded-full shadow-lg shadow-orange-900/40 flex items-center justify-center transition-transform hover:scale-110 active:scale-95">
+                    <span class="material-symbols-outlined text-3xl">add</span>
+                </button>
+            </div>
+        </div>
+        <!-- Sidebar / Voting Panel (Collapsible Overlay style) -->
+        <aside class="hidden xl:flex w-80 bg-surface-darker border-l border-[#493222] flex-col z-20 shadow-2xl">
+            <div class="p-5 border-b border-[#493222] flex justify-between items-center">
+                <h3 class="text-white font-bold text-base flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary text-xl">how_to_vote</span> Live Voting
+                </h3>
+                <span class="bg-[#2d2016] text-[#cba890] text-xs px-2 py-1 rounded-full font-medium">2 Active</span>
+            </div>
+            <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-6">
+                <!-- Voting Item 1 -->
+                <div class="flex flex-col gap-3">
+                    <p class="text-xs font-bold text-[#cba890] uppercase tracking-wider">Hotel Selection</p>
+                    <!-- Option A -->
+                    <div
+                        class="bg-[#2d2016] rounded-lg p-3 border border-[#493222] hover:border-primary/30 transition-colors">
+                        <div class="flex gap-3 mb-2">
+                            <div class="size-12 rounded bg-cover bg-center flex-none"
+                                data-alt="Modern hotel room interior"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBEoSpYXA_Y30j3I-pESGOmKj-2AlM-IzFSJlF7IJkvw9GJG0mlPvmqRtqBVmfKqe35wCJ4kYgl6ooNzW4knzwrDUHfn8f3w24Jo6zgmuiQqM8OQonQu5tsfAk58mP2adAEsOrmh06Jh_6fg0a3XXQl_J6K4r_841AneYlnytS3-OWXNUMUy0oFaA8mKtUXo74_dIUCUojEBJT58ISbdyc666S8Sa910SYeH-HJ41TWuc2w3sLzwFePOh_LJf0JVvSadj-8kHLAyA');">
+                            </div>
+                            <div>
+                                <h5 class="text-white text-sm font-bold leading-tight">Trunk Hotel</h5>
+                                <p class="text-[#cba890] text-xs mt-1">$280/night</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-2 pt-2 border-t border-[#493222]/50">
+                            <div class="flex -space-x-1">
+                                <div class="size-5 rounded-full ring-1 ring-[#2d2016] bg-cover bg-center"
+                                    data-alt="Voter avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAVMFNDFxPcA8fGkkT0ZfLXYh8tqpnL22955yUmu5r3a0i2YQexnZ5tcqdzUd5WOgtEBpx-uiMDPOvZ0ygpSmneDfMdN4Ujtinw0qQBuS9YyF3TZqK0JF26yJ8xZnGtWzULOZUizeq236BjnVQQfNxYLWs5UTP5CQfCIkTGnq-oD_t6Gacp4xmPQeR2yOnAe9cjXFwb0WIg4g80jE6J-A2wFE4w80giUSc1yXbPVvuzpq8lrhm-r2VJp2rfj2f0N6xcLGYNh7jAwQ');">
+                                </div>
+                                <div class="size-5 rounded-full ring-1 ring-[#2d2016] bg-cover bg-center"
+                                    data-alt="Voter avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCdAz7Y57KSbOhgnhKnXfhhlr6KW-v01FutVKnLRHydVgqpG6ah6QNyFRkUYyM6hB4_Ll7vZUpLO6D5WwioItL_vuRVYu96TX4Idqpwgu3RdFIpIE8R2d1mkpjv_IU_Ayq51fCW26fm2x5u6ua48CtJBD-cCpoqqdM_DHKnBUk_DLuO0dgQq-2ABMP0l_vhDsTwNZ5t-38Nr73Dei7NUMgI_J_loiGoSOV7IOnkc13qzRd5mciNZBPcwsq77OdI0dle7qSGJVEh8w');">
+                                </div>
+                                <div class="size-5 rounded-full ring-1 ring-[#2d2016] bg-cover bg-center"
+                                    data-alt="Voter avatar"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDrz4iHApIv-WZXawq6KeYNS8KKZWVN4Pmk-lzCHpNa8kHGP5Io4QzsIgfxRDjq1HAaLbI2H5FVuRT3b1_tWNV4SoZwx9zz6p0vXgGfWTrOhnIZbM41_P0RO_g2hgEJsnX_JeGBGQPcKV-EK8VGNQiMrBus6rRtVJN7anHqxZ2Y_TSIZ9zFL_49l7KZ5_Vm-fynVGhNvHe1RBfQgtildvUZi2O_MoWtm7a3qRI7M4dcsvFjq7KM_MCImhT0A4lr-KNubhpNUx9mdg');">
+                                </div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex items-center gap-1 text-primary text-xs font-bold bg-primary/10 px-2 py-1 rounded hover:bg-primary hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-sm">thumb_up</span> 4
+                                </button>
+                                <button
+                                    class="flex items-center gap-1 text-[#cba890] text-xs font-bold hover:bg-[#3d2b1f] px-2 py-1 rounded transition-colors">
+                                    <span class="material-symbols-outlined text-sm">thumb_down</span> 0
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Option B -->
+                    <div
+                        class="bg-[#2d2016] rounded-lg p-3 border border-[#493222] hover:border-primary/30 transition-colors opacity-75 hover:opacity-100">
+                        <div class="flex gap-3 mb-2">
+                            <div class="size-12 rounded bg-cover bg-center flex-none" data-alt="Luxury hotel lobby"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuARuJ6QwLUcFS3TfB7wGoH_TC_Fh9AIkl-Hs6etBl-tVJ_YzZPR09l6IQx9mSHEg5XyzBfFlYSVvAIeuR5qkId4nCNdgbS_97m4dxyCvJl6dbUub5lVLZ_gWU9nwlpOkYJKAx-3xVx5rURZKNmfBD_L6zqyvvwhayERr1ZKT7dS8rRrpPUuAzSDJ0pqL9lLDXo-PukFOpyP23MSuxjT3pw0GLOE-tCkT97JYssTJ-PdxK9uphU1dYbzctkrkmK6yDqZcmM3U6K4-Q');">
+                            </div>
+                            <div>
+                                <h5 class="text-white text-sm font-bold leading-tight">Hotel Gracery</h5>
+                                <p class="text-[#cba890] text-xs mt-1">$190/night</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between mt-2 pt-2 border-t border-[#493222]/50">
+                            <div class="flex -space-x-1">
+                                <div
+                                    class="size-5 rounded-full ring-1 ring-[#2d2016] bg-primary text-white text-[8px] flex items-center justify-center font-bold">
+                                    JD</div>
+                            </div>
+                            <div class="flex gap-2">
+                                <button
+                                    class="flex items-center gap-1 text-[#cba890] text-xs font-bold hover:bg-[#3d2b1f] px-2 py-1 rounded transition-colors">
+                                    <span class="material-symbols-outlined text-sm">thumb_up</span> 1
+                                </button>
+                                <button
+                                    class="flex items-center gap-1 text-red-400 text-xs font-bold bg-red-400/10 px-2 py-1 rounded hover:bg-red-500 hover:text-white transition-colors">
+                                    <span class="material-symbols-outlined text-sm">thumb_down</span> 1
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Divider -->
+                <div class="h-px bg-[#493222] w-full"></div>
+                <!-- Chat / Activity Stream Preview -->
+                <div class="flex items-center gap-3">
+                    <div class="hidden sm:flex flex-col items-end">
+                        <a class="text-white text-sm font-bold hover:underline" href="login.html">Alex Rivers</a>
+                        <p class="text-[#cba890] text-[10px] uppercase font-bold tracking-widest">Master Scout</p>
+                    </div>
+                    <div class="size-10 rounded-full bg-cover bg-center border-2 border-primary/40 ring-4 ring-primary/10 shadow-lg"
+                        data-alt="User profile picture showing a young explorer"
+                        style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCiXyG5D_E95l8R9U3eBwWv_G6Q3C6vXv_E6_O6_P6_Q6_R6_S6_T6_U6_V6_W6_X6_Y6_Z6_");'>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <p class="text-xs font-bold text-[#cba890] uppercase tracking-wider">Recent Updates</p>
+                    <div class="flex gap-3 items-start">
+                        <div class="size-8 rounded-full bg-cover bg-center flex-none" data-alt="User avatar"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC_MSSt7pX6iYW5aonOJ96y_tRciuYPptqhuVsuqUuIo5JV8hKpmigkpX711XODyBEcBdMN9XZrBv9paN9jPQLvW5xwscvyRHiMBAapuJraCesNoJWDVqIXeZ79lr83ATKSEbENVVSGX-G2395Ngqo3vH1CYfcKtvZMtAxUmR319pF84Ipi_ibHb_17WwvJiwsaEV8ukjeNCupFobjzQEjsb1AESHUItnVEFU9AtOqc2912MZfxzupRQuOPTcVU_OlY49KpD96Gfg');">
+                        </div>
+                        <div class="text-xs">
+                            <p class="text-white"><span class="font-bold text-primary">Alex</span> added "TeamLab
+                                Planets" to Day 1.</p>
+                            <p class="text-[#cba890] mt-1 text-[10px]">2 mins ago</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-start">
+                        <div class="size-8 rounded-full bg-cover bg-center flex-none" data-alt="User avatar"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDRLdk_Jna4iMrHGmxXn1IEzPixFLjHT2_daBuFVNzSukq1UQJl7lr0sKAPWJ0Ug7203d9kxLErr9luiseY6OKdNku8VCS1A5Vks0HJhGPxmzJDyIAuytPS1PcS5_QYsG21hddmuDjh9uoXZF6VtJXOneJrKhrWtSVkwtnYWizyeeoFn1vD3FLXEKN4RD6R9J5Vdpx7GVu5EadtlkkdzYp6GuWpUwoL1-17POxALivLYy8HbWjEfOBtHwO3sER600yvJirkpUEHXw');">
+                        </div>
+                        <div class="text-xs">
+                            <p class="text-white"><span class="font-bold text-primary-teal">Sarah</span> voted for Trunk
+                                Hotel.</p>
+                            <p class="text-[#cba890] mt-1 text-[10px]">15 mins ago</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-4 border-t border-[#493222]">
+                <button
+                    class="w-full py-2 bg-[#2d2016] border border-[#493222] rounded-lg text-sm text-white hover:bg-[#3d2b1f] transition-colors flex items-center justify-center gap-2">
+                    Open Full Chat <span class="material-symbols-outlined text-sm">open_in_new</span>
+                </button>
+            </div>
+        </aside>
+    </main>
+</body>
+
+</html>

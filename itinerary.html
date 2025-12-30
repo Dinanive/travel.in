@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Social Itinerary</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Noto+Sans:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Icons -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#0f172a", // Deep Navy
+                        "surface-dark": "#1e293b", // Slate 800 for cards
+                        "surface-light": "#ffffff",
+                        "sand": "#e2e8f0",
+                        "sand-dark": "#94a3b8",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "body": ["Noto Sans", "sans-serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-white font-display overflow-x-hidden min-h-screen flex flex-col">
+    <!-- Topographical Background Pattern -->
+    <div class="fixed inset-0 z-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=\'100\' height=\'100\' viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 50 Q 25 25 50 50 T 100 50\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'0.5\'/%3E%3Cpath d=\'M0 20 Q 25 45 50 20 T 100 20\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'0.5\'/%3E%3Cpath d=\'M0 80 Q 25 55 50 80 T 100 80\' fill=\'none\' stroke=\'%23ffffff\' stroke-width=\'0.5\'/%3E%3C/svg%3E'); background-size: 60px 60px;">
+    </div>
+    <!-- Layout Container -->
+    <div class="relative z-10 flex flex-col flex-grow w-full max-w-[1600px] mx-auto">
+        <!-- Header -->
+        <header
+            class="sticky top-0 z-50 flex items-center justify-between px-6 py-4 bg-background-light/90 dark:bg-background-dark/90 backdrop-blur-md border-b border-gray-200 dark:border-slate-800">
+            <div class="flex items-center gap-4">
+                <a class="flex items-center justify-center size-10 bg-primary/20 rounded-lg text-primary"
+                    href="canvas.html">
+                    <span class="material-symbols-outlined text-2xl">arrow_back</span>
+                </a>
+                <div>
+                    <h2 class="text-xl font-bold leading-tight tracking-tight">Kyoto Deep Dive</h2>
+                    <p class="text-sm text-gray-500 dark:text-sand-dark">Oct 12 - Oct 18, 2023</p>
+                </div>
+            </div>
+            <!-- Avatar Group & Actions -->
+            <div class="flex items-center gap-6">
+                <!-- Avatars -->
+                <div class="hidden md:flex items-center -space-x-3">
+                    <div class="w-9 h-9 rounded-full border-2 border-background-light dark:border-background-dark bg-gray-300 bg-cover bg-center"
+                        data-alt="User avatar 1"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBvGDty8lTj6_ucnx-toyb6sCQ_rR1AUEIJe42TcFmZ4FQN16DO9WEBG0WRdxrvdURIzHXgbLdYTbpiElv9OnhLWBpBIEuHwxmdKPV96vU-zI_WhiGKzinGJx6iC3aCeVkh8eB1dIKtU1Y1qc4vtYib2na8xal9Xc0WB7VStOJDNwvjDJm-zhjxlAHSp43u5SG0VkiPomUYB0Cx8QEoUjFS5t67_a1EYRK_wvbWQfvxwXi7dL9ModDvJkQQX3zgwA6YIKJgYtJf-w');">
+                    </div>
+                    <div class="w-9 h-9 rounded-full border-2 border-background-light dark:border-background-dark bg-gray-300 bg-cover bg-center"
+                        data-alt="User avatar 2"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDqmtOaQu-Q-GE0D0c3rtDBeY9rb6mhwdfibQBy2CgGFMRG1iRURryz9iuUCIEpzgGu6sIE7CmYK38jWZT0gR1Le8etPp3rwmVkEPtiuQn6Wk2k0IsYy6GwfcmuxfGM71ouMSLLvq7xe5YtTjt-jpLeK0i3R5ez2nOCNifzuQvdfRBlf5kPsajlvqnTcy0JnMYeja8pydlNTzTCmufYU3w81iBmZWDUpSaaWZZ6mk6vUPnjf7ydqDBY0yF7TYJWMBjAwxP5WblH9w');">
+                    </div>
+                    <div class="w-9 h-9 rounded-full border-2 border-background-light dark:border-background-dark bg-gray-300 bg-cover bg-center"
+                        data-alt="User avatar 3"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBm_YHSpHs6SVG06oBEkw8wIJ-PB7mXOhewP5k_7BKCdFhAdwlJ2zic2km1fshFE30TkUZWSHbJoxrrmZshljnQq5EnvwVeF3lcLXluAY3EapEoUOqKT6F2Q4vwA9RAzb6vvIdN1ZEmBbkgGv6xAMijIKCXekRp1ko6US8qzAGuqIMfOeUGpmCAIxQDfggMdmCN4BNEUUMuOBxoyxdyNsqC5dcZmrpTP5XwTyjOeiEAz5l5pmma3g30tW6i8PgNghq9Iz9P324ung');">
+                    </div>
+                    <div
+                        class="flex items-center justify-center w-9 h-9 rounded-full border-2 border-background-light dark:border-background-dark bg-surface-dark text-white text-xs font-bold">
+                        +2</div>
+                </div>
+                <div class="flex gap-3">
+                    <a class="flex items-center justify-center w-10 h-10 rounded-lg bg-gray-100 dark:bg-surface-dark text-gray-600 dark:text-sand hover:bg-gray-200 dark:hover:bg-slate-700 transition-colors"
+                        href="login.html" title="Login">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">login</span>
+                    </a>
+                    <a class="hidden sm:flex items-center px-4 h-10 bg-primary hover:bg-primary/90 text-white text-sm font-bold rounded-lg transition-colors shadow-lg shadow-primary/25"
+                        href="signup.html">
+                        <span class="material-symbols-outlined mr-2" style="font-size: 18px;">person_add</span>
+                        Join Tribe
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Grid -->
+        <main class="flex-1 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-8 p-0 lg:p-6 overflow-hidden">
+            <!-- Left Sidebar: Day Navigation (Hidden on small, sticky on large) -->
+            <aside class="hidden lg:block lg:col-span-3 xl:col-span-2 relative">
+                <div class="sticky top-24 space-y-6">
+                    <div
+                        class="p-6 rounded-2xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-slate-800 shadow-sm">
+                        <h3 class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4">Itinerary</h3>
+                        <nav class="flex flex-col gap-2">
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl bg-primary/10 text-primary font-bold"
+                                href="#">
+                                <div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+                                Day 1: Arrival
+                            </a>
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 text-gray-600 dark:text-sand-dark transition-colors"
+                                href="#">
+                                <div class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-slate-600"></div>
+                                Day 2: Arashiyama
+                            </a>
+                            <a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-gray-50 dark:hover:bg-slate-800 text-gray-600 dark:text-sand-dark transition-colors"
+                                href="#">
+                                <div class="w-1.5 h-1.5 rounded-full bg-gray-300 dark:bg-slate-600"></div>
+                                Day 3: Departure
+                            </a>
+                        </nav>
+                    </div>
+                    <div
+                        class="p-6 rounded-2xl bg-gradient-to-br from-primary to-orange-600 text-white shadow-lg shadow-primary/20">
+                        <div class="flex items-start justify-between mb-2">
+                            <span class="material-symbols-outlined text-3xl">cloud</span>
+                            <span class="text-xs font-medium bg-white/20 px-2 py-1 rounded">Today</span>
+                        </div>
+                        <div class="text-3xl font-bold mb-1">24°C</div>
+                        <p class="text-white/80 text-sm">Partly Cloudy<br />Humidity: 65%</p>
+                    </div>
+                </div>
+            </aside>
+            <!-- Center: Vertical Timeline -->
+            <section class="lg:col-span-6 xl:col-span-7 pb-24">
+                <!-- Mobile Day Header -->
+                <div class="lg:hidden p-6 pb-2">
+                    <div class="flex justify-between items-end mb-4">
+                        <div>
+                            <h1 class="text-2xl font-bold text-slate-900 dark:text-white">Day 1: Arrival</h1>
+                            <p class="text-slate-500 dark:text-sand-dark">Northern Higashiyama Area</p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="flex items-center gap-1 text-primary">
+                                <span class="material-symbols-outlined">wb_sunny</span>
+                                <span class="font-bold">24°</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desktop Day Header -->
+                <div class="hidden lg:block mb-8">
+                    <h1 class="text-3xl font-extrabold text-slate-900 dark:text-white mb-2">Day 1: Arrival &amp;
+                        Northern Higashiyama</h1>
+                    <div class="flex items-center gap-4 text-sm text-slate-500 dark:text-sand-dark">
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-base">calendar_today</span> Oct 12, 2023</span>
+                        <span class="w-1 h-1 rounded-full bg-slate-500"></span>
+                        <span class="flex items-center gap-1"><span
+                                class="material-symbols-outlined text-base">location_on</span> Kyoto, Japan</span>
+                    </div>
+                </div>
+                <!-- Timeline Container -->
+                <div class="relative px-4 lg:px-0">
+                    <!-- Vertical Line -->
+                    <div
+                        class="absolute left-[27px] lg:left-[119px] top-4 bottom-0 w-0.5 bg-gray-200 dark:bg-slate-800">
+                    </div>
+                    <!-- Event 1 -->
+                    <div class="relative grid grid-cols-[56px_1fr] lg:grid-cols-[140px_1fr] gap-4 mb-12 group">
+                        <!-- Time Column -->
+                        <div class="hidden lg:flex flex-col items-end pt-1 pr-8">
+                            <span class="text-lg font-bold text-slate-900 dark:text-white">09:00 AM</span>
+                            <span class="text-xs text-slate-400 dark:text-sand-dark font-medium">2.5 hrs</span>
+                        </div>
+                        <!-- Timeline Node (Mobile Time + Dot) -->
+                        <div class="flex flex-col items-center pt-2 relative">
+                            <div
+                                class="w-4 h-4 rounded-full bg-primary border-4 border-background-light dark:border-background-dark z-10 shadow-sm">
+                            </div>
+                            <div class="lg:hidden mt-2 text-xs font-bold text-slate-500 dark:text-sand-dark">09:00</div>
+                        </div>
+                        <!-- Card -->
+                        <div
+                            class="flex flex-col bg-white dark:bg-surface-dark border border-gray-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Fushimi
+                                        Inari Shrine Hike</h3>
+                                    <p class="text-sm text-slate-500 dark:text-sand-dark mt-1 flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-sm">location_on</span> Fushimi Ward,
+                                        Kyoto
+                                    </p>
+                                </div>
+                                <div class="relative group/chat cursor-pointer">
+                                    <span class="material-symbols-outlined text-primary">chat_bubble</span>
+                                    <span
+                                        class="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white">2</span>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+                                <div class="aspect-video sm:aspect-auto sm:h-32 rounded-lg bg-gray-200 dark:bg-slate-700 bg-cover bg-center overflow-hidden relative"
+                                    data-alt="Orange torii gates of Fushimi Inari"
+                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDlRwb25wbGYvmSLSj36zE67m1fXALDEqrsD4Z6f34vUfDeR5OiYMujRyYh-2Na8Oxb1Gwbk_6MywQznB8cuqIR8gw_3Jumlt6hx_vX9dGrPb9Tfhd6x8if06UAYwW3s0cWf-LbIErjwAX9lIv25yiHAA1EzmieCqDHHt2fHrlpoQ2MG6nC8ufzYM4RB4B5faPgNuRDvr1Z8jr8AFAcu4BTVAuAu5wFraBX9W5ZX5IEpVJxkvmlQ_zFnckZ01xKPrYoTOQzuo6QAw');">
+                                    <div class="absolute inset-0 bg-black/20 group-hover:bg-black/0 transition-colors">
+                                    </div>
+                                </div>
+                                <div
+                                    class="h-32 rounded-lg bg-gray-100 dark:bg-slate-900 overflow-hidden relative border border-gray-200 dark:border-slate-700">
+                                    <img alt="Map preview" class="w-full h-full object-cover opacity-80"
+                                        onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/1024px-Google_Maps_Logo_2020.svg.png'; this.style.objectFit='contain'; this.style.padding='20px'"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDzOrY4ogssdwmRUgqT6FEZwJviDBqwSyZlqLX54Q84SKPXEh5Rpx9SCqcDTtv_xtR1WIT6z_WOdmuCLFk6bL0k3NpA_plWK_j8eOw-ngcqq3YAW0MrRWYtEgueSZXR6gqs20I5fkHRC9H-g5lZ4v7yGMn_DBLKWwzyyDuZIrkKiMsPrwm8bT7rSlxR03anGhdHKbIAHLsBdAg3cFi-l5B12X9bEHcHw68duNIKfRv5a0scUStb4kPrGM5g9IrK7j81laJTqDoh_g" />
+                                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                        <span
+                                            class="material-symbols-outlined text-primary text-3xl drop-shadow-md">location_on</span>
+                                    </div>
+                                    <div
+                                        class="absolute bottom-2 right-2 bg-white dark:bg-slate-800 px-2 py-1 rounded text-xs font-bold shadow-sm">
+                                        Map</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Event 2 -->
+                    <div class="relative grid grid-cols-[56px_1fr] lg:grid-cols-[140px_1fr] gap-4 mb-12 group">
+                        <!-- Time Column -->
+                        <div class="hidden lg:flex flex-col items-end pt-1 pr-8">
+                            <span class="text-lg font-bold text-slate-900 dark:text-white">01:00 PM</span>
+                            <span
+                                class="text-xs text-green-500 font-bold bg-green-500/10 px-2 py-0.5 rounded-full mt-1">Confirmed</span>
+                        </div>
+                        <!-- Timeline Node -->
+                        <div class="flex flex-col items-center pt-2 relative">
+                            <div
+                                class="w-3 h-3 rounded-full bg-gray-300 dark:bg-slate-600 border-2 border-background-light dark:border-background-dark z-10 group-hover:bg-primary group-hover:scale-125 transition-all">
+                            </div>
+                            <div class="lg:hidden mt-2 text-xs font-bold text-slate-500 dark:text-sand-dark">13:00</div>
+                        </div>
+                        <!-- Card -->
+                        <div
+                            class="flex flex-col bg-white dark:bg-surface-dark border border-gray-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300">
+                            <div class="flex justify-between items-start mb-3">
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">Omakase
+                                        Lunch at Sushi Tetsu</h3>
+                                    <p class="text-sm text-slate-500 dark:text-sand-dark mt-1">Pontocho Alley</p>
+                                </div>
+                                <button
+                                    class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors text-slate-400 hover:text-primary">
+                                    <span class="material-symbols-outlined">chat_bubble_outline</span>
+                                </button>
+                            </div>
+                            <!-- Single large image for visual variety -->
+                            <div class="w-full h-40 rounded-lg bg-gray-200 dark:bg-slate-700 bg-cover bg-center relative group-hover:brightness-110 transition-all"
+                                data-alt="High-end sushi platter"
+                                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB_qRU70q1935flBSVFBRnHuQ_-lDnRPSK973O3S097Xi_swErLWwwglAy1v7AZ3KhE4v5mggTJ_zdTD8ZoX8cdAMRkPD6yMIDCjZo10_qkUmx0T4srTc5wFSmBbPrlls1L6i8RZkRTZ7AAuKZT1ZB9rbwhwaVRAMg1Xt7UVy_uEEpA57cFpsT8dM0hTuyz-ileFthqjmve5bt6AXKnec4zo95O_ETRc0Pf-tVNTywG3yl7BiWplgrAtL7MfVOCnz44PKgXPGAbmg');">
+                                <div
+                                    class="absolute top-3 left-3 bg-green-500/90 backdrop-blur text-white text-xs font-bold px-2 py-1 rounded">
+                                    Reservation #8821</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Event 3 -->
+                    <div class="relative grid grid-cols-[56px_1fr] lg:grid-cols-[140px_1fr] gap-4 mb-4 group">
+                        <!-- Time Column -->
+                        <div class="hidden lg:flex flex-col items-end pt-1 pr-8">
+                            <span class="text-lg font-bold text-slate-900 dark:text-white">04:00 PM</span>
+                            <span class="text-xs text-slate-400 dark:text-sand-dark font-medium">~15 min drive</span>
+                        </div>
+                        <!-- Timeline Node -->
+                        <div class="flex flex-col items-center pt-2 relative">
+                            <div
+                                class="w-3 h-3 rounded-full bg-gray-300 dark:bg-slate-600 border-2 border-background-light dark:border-background-dark z-10 group-hover:bg-primary group-hover:scale-125 transition-all">
+                            </div>
+                            <div class="lg:hidden mt-2 text-xs font-bold text-slate-500 dark:text-sand-dark">16:00</div>
+                        </div>
+                        <!-- Card -->
+                        <div
+                            class="flex flex-col bg-white dark:bg-surface-dark border border-gray-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm hover:shadow-md hover:border-primary/30 transition-all duration-300">
+                            <div class="flex justify-between items-start">
+                                <div class="flex gap-4">
+                                    <div
+                                        class="flex items-center justify-center size-12 rounded-full bg-primary/10 text-primary shrink-0">
+                                        <span class="material-symbols-outlined">bed</span>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-tight">
+                                            Check-in at Ryokan</h3>
+                                        <p class="text-sm text-slate-500 dark:text-sand-dark mt-1">Gion Hatanaka</p>
+                                    </div>
+                                </div>
+                                <button
+                                    class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-slate-700 transition-colors text-slate-400 hover:text-primary">
+                                    <span class="material-symbols-outlined">chat_bubble_outline</span>
+                                </button>
+                            </div>
+                            <div
+                                class="mt-4 pt-4 border-t border-gray-100 dark:border-slate-700 flex items-center justify-between">
+                                <div class="flex items-center gap-2 text-sm text-slate-500 dark:text-sand-dark">
+                                    <span class="material-symbols-outlined text-lg">directions_car</span>
+                                    <span>15 mins from lunch</span>
+                                </div>
+                                <button class="text-primary text-sm font-bold hover:underline">Get Directions</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End of Day Indicator -->
+                    <div class="relative grid grid-cols-[56px_1fr] lg:grid-cols-[140px_1fr] gap-4 pt-4 pb-12">
+                        <div class="hidden lg:flex"></div>
+                        <div class="flex flex-col items-center relative">
+                            <div class="w-2 h-2 rounded-full bg-gray-300 dark:bg-slate-700"></div>
+                        </div>
+                        <div class="text-sm text-slate-400 dark:text-slate-600 italic pl-5">End of Day 1</div>
+                    </div>
+                </div>
+            </section>
+            <!-- Right Sidebar: Map & Trip Details -->
+            <aside class="hidden lg:block lg:col-span-3 xl:col-span-3 relative">
+                <div class="sticky top-24 h-[calc(100vh-8rem)] flex flex-col gap-6">
+                    <!-- Map Card -->
+                    <div
+                        class="flex-1 bg-surface-dark rounded-2xl overflow-hidden border border-slate-700 shadow-lg relative group">
+                        <!-- Map Placeholder using abstract pattern or static map -->
+                        <div class="absolute inset-0 bg-cover bg-center opacity-60 group-hover:opacity-80 transition-opacity"
+                            data-location="Kyoto"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCGTO0w7NSenV7uVfuVi3c5xIbG2qVEofPNMF9Zh7pei9Afs78HR3ccXn6yKLHuJc0Am1OYLUBaCP64Y7RS6WTjSwso9HgQtCEXpBEPLMhUZBuLbQPq7wSd38EZ09Ya0Y_-xmA4zF7B2m9jTnfUHZyI_74kBdtnR1DnTEfLzpLYX8DIhMHuaIgylkDVmV0CURlMdrfaYufja03HnCc3IpKsu5bG1lDYcN3CR4xNKI9Uu_LgUJmHiS0FCCPpOsZGOj__d52FDIeetQ'); background-size: cover; background-position: center; filter: invert(1) hue-rotate(180deg) brightness(0.6);">
+                        </div>
+                        <!-- Mock Pins -->
+                        <div
+                            class="absolute top-1/4 left-1/3 p-1 bg-primary rounded-full shadow-lg ring-4 ring-primary/20 animate-pulse">
+                            <span class="material-symbols-outlined text-white text-sm">temple_buddhist</span>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 p-1 bg-white text-slate-900 rounded-full shadow-lg">
+                            <span class="material-symbols-outlined text-sm">restaurant</span>
+                        </div>
+                        <div
+                            class="absolute bottom-4 left-4 right-4 bg-surface-dark/90 backdrop-blur p-3 rounded-xl border border-slate-600">
+                            <div class="flex items-center justify-between text-white">
+                                <span class="text-sm font-bold">Kyoto Area</span>
+                                <span class="material-symbols-outlined text-sm">open_in_full</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Quick Links / Info -->
+                    <div
+                        class="bg-white dark:bg-surface-dark border border-gray-200 dark:border-slate-800 rounded-2xl p-5 shadow-sm">
+                        <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Utilities</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors"
+                                onclick="location.href='expenses.html'">
+                                <div class="bg-primary/10 text-primary p-2 rounded-lg">
+                                    <span class="material-symbols-outlined text-lg">payments</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white truncate">Split Expenses
+                                    </p>
+                                    <p class="text-xs text-slate-400">Manage trip budget</p>
+                                </div>
+                            </li>
+                            <li class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors"
+                                onclick="location.href='vault.html'">
+                                <div class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 p-2 rounded-lg">
+                                    <span class="material-symbols-outlined text-lg">photo_library</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white truncate">The Vault</p>
+                                    <p class="text-xs text-slate-400">Post-trip memories</p>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li
+                                class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors">
+                                <div class="bg-red-100 dark:bg-red-900/30 text-red-600 p-2 rounded-lg">
+                                    <span class="material-symbols-outlined text-lg">picture_as_pdf</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white truncate">
+                                        Flight_Tickets.pdf</p>
+                                    <p class="text-xs text-slate-400">2.4 MB • Added yesterday</p>
+                                </div>
+                            </li>
+                            <li
+                                class="flex items-center gap-3 p-2 hover:bg-gray-50 dark:hover:bg-slate-800 rounded-lg cursor-pointer transition-colors">
+                                <div class="bg-blue-100 dark:bg-blue-900/30 text-blue-600 p-2 rounded-lg">
+                                    <span class="material-symbols-outlined text-lg">confirmation_number</span>
+                                </div>
+                                <div class="flex-1 min-w-0">
+                                    <p class="text-sm font-bold text-slate-800 dark:text-white truncate">
+                                        Ryokan_Booking.pdf</p>
+                                    <p class="text-xs text-slate-400">1.1 MB • Added 2 days ago</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <!-- Mobile FAB -->
+        <button
+            class="lg:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-white rounded-full shadow-2xl shadow-primary/40 flex items-center justify-center z-50">
+            <span class="material-symbols-outlined text-2xl">add</span>
+        </button>
+    </div>
+</body>
+
+</html>

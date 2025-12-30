@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Group Discovery - Find Your Collective Escape</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2a1e16", // Slightly lighter than background-dark for cards
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for horizontal scrolling elements */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .masonry-grid {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .masonry-grid {
+                column-count: 2;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .masonry-grid {
+                column-count: 3;
+            }
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white antialiased transition-colors duration-200">
+    <div class="flex min-h-screen w-full flex-col">
+        <!-- Top Navigation -->
+        <header
+            class="sticky top-0 z-40 w-full border-b border-gray-200 dark:border-white/10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md">
+            <div class="px-6 md:px-12 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <a class="flex items-center gap-3 text-slate-900 dark:text-white group" href="index.html">
+                        <div class="flex items-center justify-center size-8 rounded-lg bg-primary text-white">
+                            <span class="material-symbols-outlined text-[20px]">travel_explore</span>
+                        </div>
+                        <h2 class="text-lg font-bold tracking-tight">Tribe</h2>
+                    </a>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-sm font-medium hover:text-primary transition-colors text-slate-600 dark:text-slate-300"
+                            href="index.html">Home</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors text-slate-600 dark:text-slate-300"
+                            href="#">Destinations</a>
+                        <a class="text-sm font-medium hover:text-primary transition-colors text-slate-600 dark:text-slate-300"
+                            href="canvas.html">Active Canvas</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <!-- Search Input -->
+                    <div
+                        class="hidden lg:flex items-center bg-white dark:bg-surface-dark rounded-full px-4 py-2 border border-gray-200 dark:border-white/5 focus-within:border-primary/50 transition-all w-64">
+                        <span
+                            class="material-symbols-outlined text-gray-400 dark:text-gray-500 text-[20px]">search</span>
+                        <input
+                            class="bg-transparent border-none focus:ring-0 text-sm w-full text-slate-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                            placeholder="Search destinations..." type="text" />
+                    </div>
+                    <!-- Avatar Group (Trip Members) -->
+                    <div class="hidden sm:flex items-center -space-x-3 hover:space-x-1 transition-all duration-300 cursor-pointer pl-2"
+                        title="Trip Members">
+                        <div class="size-9 rounded-full border-2 border-background-light dark:border-background-dark bg-cover bg-center"
+                            data-alt="Portrait of a woman"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNMwpCyGgbkpA5tVX112ZzQ0nkzuY4aemCQOvaScDmjMFi2qaDQfBQiDDAOEtRAmYh6ji6w_sCUKUjrb8E9b78b193aN47O9MrQf37-Wj3dRnoSC9GOXklacDA3tBXltxxw1hlDcSysYzRbmWRnDmlzmSWx7_N-iK8ZPGxgRgGokeiSV9-GDuzaGhQW8zvCIyrKkfvnnhHGL_7VWGHOqGqIUHqsHluU21XYM3KqfWarBlKWgB_03vx8Zh_12WTcQXI0H2xR1mVsA");'>
+                        </div>
+                        <div class="size-9 rounded-full border-2 border-background-light dark:border-background-dark bg-cover bg-center"
+                            data-alt="Portrait of a man"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCjlPTKpxKBjiAuT1A758vTZgQgkyAbeS_rsU9F5NgI6J0NWMMryR_UU93TL2eePl-lucbtFRomxW7r7XoQTQW0qcs2MkLBSrj4cEa462ptyKhOMsmPmuf7IMKbYAF5RA6ttovo_5lP6DoS7rBdSrg3-KgwrBpyXG-KX_EQapae0gRb9cqfJJPfYLB0NveCRk3BqQjKXOFDDuL-243oceyL49Fg4gpuYoiVXSymkJpQN8E5RGEUfcOhEVBLicARTdihxxaq87EJbA");'>
+                        </div>
+                        <div
+                            class="size-9 rounded-full border-2 border-background-light dark:border-background-dark bg-primary flex items-center justify-center text-white text-xs font-bold shadow-sm">
+                            +4
+                        </div>
+                    </div>
+                    <a href="login.html"
+                        class="hidden sm:block text-sm font-bold text-slate-800 dark:text-white mr-2">Sign In</a>
+                    <a class="bg-primary hover:bg-primary/90 text-white text-sm font-bold py-2.5 px-5 rounded-full transition-colors shadow-lg shadow-primary/20 flex items-center gap-2"
+                        href="signup.html">
+                        <span class="material-symbols-outlined text-[18px]">person_add</span>
+                        <span class="hidden sm:inline">Join Tribe</span>
+                    </a>
+                    <button
+                        class="size-10 rounded-full bg-gray-100 dark:bg-surface-dark flex items-center justify-center text-slate-600 dark:text-slate-300 md:hidden">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content -->
+        <main class="flex-1 w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-12 py-8 md:py-12 pb-24">
+            <!-- Page Heading -->
+            <div class="mb-10 animate-fade-in-up">
+                <div class="max-w-2xl">
+                    <h1
+                        class="text-4xl md:text-5xl font-black tracking-tight mb-3 text-slate-900 dark:text-white leading-[1.1]">
+                        Find Your <span class="text-primary">Collective</span> Escape
+                    </h1>
+                    <p class="text-lg text-slate-500 dark:text-slate-400 font-medium">
+                        Curated retreats designed for groups of 8+. Split the cost, share the memories.
+                    </p>
+                </div>
+            </div>
+            <!-- Vibe Filters -->
+            <div
+                class="mb-10 sticky top-[73px] z-30 -mx-4 px-4 sm:mx-0 sm:px-0 py-2 bg-background-light/95 dark:bg-background-dark/95 backdrop-blur-sm transition-all">
+                <div class="flex gap-3 overflow-x-auto hide-scrollbar pb-2 pt-1">
+                    <!-- Active Filter -->
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-primary text-white pl-4 pr-5 shadow-lg shadow-primary/25 transition-transform hover:scale-105 active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">celebration</span>
+                        <span class="text-sm font-bold">Party Ready</span>
+                    </button>
+                    <!-- Inactive Filters -->
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-slate-600 dark:text-slate-300 pl-4 pr-5 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">child_friendly</span>
+                        <span class="text-sm font-medium">Kids Friendly</span>
+                    </button>
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-slate-600 dark:text-slate-300 pl-4 pr-5 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">wifi_tethering</span>
+                        <span class="text-sm font-medium">Digital Nomad Hub</span>
+                    </button>
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-slate-600 dark:text-slate-300 pl-4 pr-5 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">self_improvement</span>
+                        <span class="text-sm font-medium">Zen Retreat</span>
+                    </button>
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-slate-600 dark:text-slate-300 pl-4 pr-5 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">eco</span>
+                        <span class="text-sm font-medium">Eco-Luxe</span>
+                    </button>
+                    <button
+                        class="flex h-10 shrink-0 items-center justify-center gap-x-2 rounded-full bg-white dark:bg-surface-dark border border-gray-200 dark:border-white/5 text-slate-600 dark:text-slate-300 pl-4 pr-5 hover:bg-gray-50 dark:hover:bg-white/5 hover:border-gray-300 dark:hover:border-white/10 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-[20px]">pool</span>
+                        <span class="text-sm font-medium">Waterfront</span>
+                    </button>
+                </div>
+            </div>
+            <!-- Masonry Grid -->
+            <div class="masonry-grid">
+                <!-- Card 1 -->
+                <a class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300"
+                    href="canvas.html">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-[4/5]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Modern luxury villa with pool"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDoZAdfzK4PgZMLmyO-RHilQ0r3NDjXSutXymbJ7VV5m775Fvzv4XjKMjuWve0ovkcWXlLps7HKNeHkBkumiUhjQAyaljViBTh84NU49QOkxqsr9FCcG8TcNX_gIDMP5n9rx3oMiXl2ihCBh_fdvq7tIw6g8A_a2JU2nXA0AZ2SP57JceyZYesLW7fL_b7McG_2mpCREnRAR6Y-C43V2UoGjKHq___Rv6UjcnrkbDJ77FTUkBBielsRBfmTtaPi_h-gkfmY3go5rw");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <!-- Floating Badges -->
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Sleeps
+                                14</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Private
+                                Chef</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">The Bali Cliffside Manor</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Uluwatu, Bali
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$1,200<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$120<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Card 2 (Taller) -->
+                <div
+                    class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-[3/5]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Tulum jungle estate with lights"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA9tnAOUQTMpiuaTu5rpPvdAwa2u_S_r33iaGEj5pWqwn5h8ZhaZWHS70PumSg9O4r5f-N2stdvOMJDNnto6DfHUpWmsFsMpprt5zIgtdYIXaEgXH7mGr_JRnPocTm5e9eQzbw-xUshk9dFxKp0aoB0cjOVOlVdPwrxMdaETT13vsyg8_6Nfos5jcD4AX5tFB88O-vCrokoTUKTeWwq8kYFL2LS8zG2FOMajqpL2q2eRdaZzInSo6lLi-mH__05lbCLwyas_g2C9w");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">DJ
+                                Booth</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Beach
+                                Access</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">Tulum Jungle Estate</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Tulum, Mexico
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$1,500<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$94<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div
+                    class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-square">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Modern white villa in Santorini"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCBNiywa2-ukvdiol0IU1GF95B73jVsVgsfZtyDN5-vQ9hzsuYD2CSYFDeh98MQ6p9KlrUJud6yvxD3HasZvoldnrKwhuvPHVTOjnkDl1nd1XGt-jviTuxTST1LD8ak1LandFMQcF_cfhQtEmiTLGGZSDJCIOHCr9Odjyi8byApBOGzfjCDUJECHNqNepCdUJoQwxDCWayfAQ8Y9CxEL4hkT2kjJRXq4LJbfbnv_3mor9zZ1xmVLqbEUEoCe7mggjb-JKhyzQn-pw");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Infinity
+                                Pool</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Sleeps
+                                12</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <!-- Collaborator indicator -->
+                        <div class="absolute bottom-20 right-3 size-8 rounded-full border-2 border-white bg-cover bg-center shadow-lg"
+                            data-alt="User avatar"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDKYJwER-NZiIEz1vhZ51LNK6LLzRefzLBlqt0JvNFGyJicSnnTTtpf-2NrpdPWTSP3LuXQDZPnkx416mWZ8TxNMKKqTce7UiVwHp5YJqSBJJ6ydSFSmQ26RduwEjSyU3nsjyvYw_v78ott1sVFJTlVyw3NdF9aZT_sTkVXl7CP-apT4CFSxT1q5MxnjvCAY7w_K4eSC5oy47PX7TO8H81gcA8hdh_k3etBBQWaiTmPpqzK4ASGeIneDVMPkRKc79i361Nb48ny_g");'
+                            title="Mike liked this"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">Santorini White Villa</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Oia, Greece
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$2,500<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$208<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div
+                    class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-[4/3]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Glass house in the forest"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDtdgWiAmbO-S8qo_YpJ2g3aOD5Q9LaRp7_P-Zn09Loux5v4WFofgBobUmGm7289dnIkXxFuWZYKgJQxxscCr1ilaPRJMcRPmL8c_nKuuJFCadeg74GLc_7xssfShaTbG9z1CRS7f8IfkQA6c83YeW1D7-71TZGUy-v0dwxCoNjonWqu4EiyQ636KcUUf0sMRX6OBeEJfXnEuPEFD5Y_kBWDZd418Zn3KZ-1VKLNnz2ledMzw-6yzvWDtfaqwJSREjs3Q67gsQUMg");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Starlink
+                                Wifi</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Sleeps
+                                10</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">Forest Glass House</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Bend, Oregon
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$900<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$90<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div
+                    class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-[3/4]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Modern geometric luxury mansion"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHHccodYQvFszyzWs_x35bSqT8TYMLkZ5J9XFHwNpimKl9PZdzxPLxv13AuLzEPxJa8wlHX_EXKk_olUcZxqwMfmbFdcWlJ2BS0UH1pOvCnK1rr3RKOhBinEjTeiFKsESohADvmvH5EwFXjdmvJnHc9f4bmjmRAwvEdUZnhJCFhFbv6fUSY7nSX6f3CpJ6ViAnp8IknMb5mtxPzfW9hBN6D76-q0gXITBo4zJw42mbDJAnE-maEYos1a6L9Js4zdrXWQcVLnq3wg");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Cinema
+                                Room</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Gym</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">The Geometric Villa</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Beverly Hills, CA
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$3,500<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$350<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 6 -->
+                <div
+                    class="masonry-item group relative flex flex-col gap-3 rounded-2xl bg-white dark:bg-surface-dark p-3 transition-all hover:shadow-xl hover:-translate-y-1 duration-300">
+                    <div class="relative w-full overflow-hidden rounded-xl aspect-[4/3]">
+                        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                            data-alt="Traditional hacienda with pool"
+                            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCLTOnqNI3UVfS2Et27cydsSsVJi4diMZxWBct9ZvPDu-ro2qu8uSOlxgCmx8UpETQqCFrzYyTbPADqi8u1Px9ALFdx27TklZJlR4LDxSTPAmqAYrp8Cm-h0pSanbasfM0rjYpEjjngycwnI3oUx1sYAuJ5cmyC0xIHa3D9kIQj_C2MUTZO8oRlM-4mTt25oeDexRJt8XNzE8FPZWZ6wThPSTx15zptN7qafpG4UVOlzo9IqCAb_sEO8pu3q5ZYxFJjG2b6_tsXoQ");'>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60">
+                        </div>
+                        <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Historical</span>
+                            <span
+                                class="px-2.5 py-1 rounded-md bg-white/20 backdrop-blur-md text-white text-xs font-bold border border-white/20">Courtyard</span>
+                        </div>
+                        <button
+                            class="absolute top-3 right-3 size-9 rounded-full bg-black/40 backdrop-blur-md text-white flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-[20px]">favorite</span>
+                        </button>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <h3 class="text-white text-xl font-bold leading-tight mb-1">Hacienda San Jose</h3>
+                            <div class="flex items-center text-white/90 text-sm gap-1 mb-2">
+                                <span class="material-symbols-outlined text-[16px]">location_on</span>
+                                Yucatan, Mexico
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-1 flex justify-between items-end">
+                        <div>
+                            <p
+                                class="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-0.5">
+                                Total</p>
+                            <p class="text-lg font-bold text-slate-900 dark:text-white">$850<span
+                                    class="text-sm font-normal text-slate-500 dark:text-slate-400">/night</span></p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xs font-medium text-primary uppercase tracking-wider mb-0.5">Per Person</p>
+                            <p class="text-lg font-bold text-primary">$70<span
+                                    class="text-sm font-normal text-primary/70">/night</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <button
+                    class="text-slate-500 dark:text-slate-400 hover:text-primary font-medium flex items-center gap-2 mx-auto transition-colors">
+                    <span class="material-symbols-outlined animate-bounce">expand_more</span>
+                    Load more luxury retreats
+                </button>
+            </div>
+        </main>
+        <!-- Sticky Footer -->
+        <footer
+            class="fixed bottom-0 w-full z-50 bg-background-light dark:bg-background-dark border-t border-gray-200 dark:border-white/10 shadow-[0_-5px_30px_rgba(0,0,0,0.2)]">
+            <div class="max-w-[1400px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
+                <div class="hidden sm:flex flex-col">
+                    <span
+                        class="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mb-1">Active
+                        Trip</span>
+                    <span class="text-slate-900 dark:text-white font-bold text-lg">Cabo San Lucas 2024</span>
+                </div>
+                <div class="flex items-center gap-6 ml-auto">
+                    <div class="hidden md:flex flex-col items-end">
+                        <span class="text-xs text-slate-500 dark:text-slate-400">Dates</span>
+                        <span class="text-sm font-medium text-slate-900 dark:text-white">Oct 12 - Oct 19</span>
+                    </div>
+                    <div class="h-8 w-px bg-gray-300 dark:bg-white/10 hidden md:block"></div>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center -space-x-2">
+                            <div class="size-8 rounded-full border-2 border-background-light dark:border-background-dark bg-cover bg-center"
+                                data-alt="Portrait of a woman"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuA5c_nW1kgkVWzunxFHCSX23_M9NiPGdGJm0wIiUQCI238bT57SvPLx4oOIHcurQNfcFL5fQTxF5RRVL09wDjqHrmkHkpLRSnyBRGGWmQbWUn0jhiiZSbR1gT-s3AJyClqFly_XO6BhItos0THI_CKcn1Lf6GZ-ykxMh4bIUHRB0e9y0eiMfgnpBSIZqWNnAOom5uQPmeAtG15AhMitnpEkilebg_t96Kwxypt0WTnXmid6W7Axgs2gOuvtmPjYu09Cc4rwE0jSdQ");'>
+                            </div>
+                            <div class="size-8 rounded-full border-2 border-background-light dark:border-background-dark bg-cover bg-center grayscale opacity-60"
+                                data-alt="Portrait of a man"
+                                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAn7hQgNjZzK0g_W-Gsw9zVBMVJ0wAvsRwDxGa-XXjpUJR98ltqUArhFbDxTxIMfXbLpjetUDb_YBU6HbL9k8JQ7dlDdekK9s5odeBAsL53xY1FoOB_68T9OVrHavBu6hqfLrQLEUW3wQMWXXU5xlROEobvdwQuBWfP069QF5kZdcWrBfa8hAS55hvdPN4x8DEctTuY_fqhtT9o5jiIh-Kcm-bJRNdbDj92I4RcZHEnsJIIcD_1fP2GLs3wSTop2-oYAEAC-HdzyA");'>
+                            </div>
+                        </div>
+                        <button
+                            class="bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg shadow-lg shadow-primary/25 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[20px]">share</span>
+                            Invite Friends to View
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

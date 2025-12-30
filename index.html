@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Tribe - Premium Group Travel</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "charcoal": "#121212",
+                        "surface": "#2d241e",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #221710;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #493222;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #da5e0b;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .glass-nav {
+            background: rgba(34, 23, 16, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display antialiased text-slate-900 dark:text-white selection:bg-primary selection:text-white">
+    <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+        <!-- Navigation -->
+        <header class="fixed top-0 z-50 w-full glass-nav transition-all duration-300">
+            <div class="layout-container mx-auto px-4 sm:px-6 lg:px-8 max-w-[1440px]">
+                <div class="flex h-20 items-center justify-between">
+                    <!-- Logo -->
+                    <div class="flex items-center gap-2">
+                        <div class="text-primary">
+                            <span class="material-symbols-outlined text-[32px] fill-1">camping</span>
+                        </div>
+                        <h2 class="text-white text-2xl font-serif font-bold tracking-tight">Tribe</h2>
+                    </div>
+                    <!-- Desktop Links -->
+                    <nav class="hidden md:flex items-center gap-8">
+                        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                            href="discovery.html">Destinations</a>
+                        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                            href="#how-it-works">How it Works</a>
+                        <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                            href="vault.html">Journal</a>
+                    </nav>
+                    <!-- Auth Actions -->
+                    <div class="flex items-center gap-3">
+                        <a class="hidden sm:flex h-10 px-6 items-center justify-center rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 text-white text-sm font-bold transition-all"
+                            href="login.html">
+                            Login
+                        </a>
+                        <a class="h-10 px-6 flex items-center justify-center rounded-full bg-primary hover:bg-[#b54a05] text-white text-sm font-bold shadow-lg shadow-primary/20 transition-all transform hover:scale-105"
+                            href="signup.html">
+                            Join Tribe
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Wrapper -->
+        <main class="flex-grow flex flex-col lg:flex-row pt-20 lg:pt-0 min-h-screen">
+            <!-- Left Split: Video/Image -->
+            <div
+                class="relative w-full lg:w-1/2 h-[50vh] lg:h-auto min-h-[400px] lg:fixed lg:left-0 lg:top-0 lg:bottom-0 z-0 overflow-hidden group">
+                <!-- Overlay Gradient -->
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-background-dark via-transparent to-black/30 lg:bg-gradient-to-r lg:from-transparent lg:to-background-dark z-10">
+                </div>
+                <!-- Hero Image -->
+                <div class="w-full h-full bg-cover bg-center transition-transform duration-[20s] ease-linear transform group-hover:scale-110"
+                    data-alt="Group of friends sitting around a campfire at twilight near a forest"
+                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBw_H4KA5-o7CRyqVLDkoEGQ0Lb-iWXVHW5t_F57ef1Ihsm60OeJTGvKY0DR0G5KM4chpfhDLEd9C3GYAzNTP9sCDs-ELqsTCRi14xP1eCHQjS2nmp2HBLH6mo4_J_mnyD-F1wFrHcFufdM-m_11MsoFxt6OoICWVYYbAIEh90X9nEFZ_nnd4X3UCDtu-IFSwro7cqah0vlHJVbnTK-Z6oV0i0-ZeJuIRQGu_Rd_2nGN3TaKcC0k7ywZLgmVCDDhns6A7-5vEpv2A');">
+                </div>
+                <!-- Mobile Only: Text Overlay -->
+                <div class="absolute bottom-8 left-6 z-20 lg:hidden">
+                    <p class="text-white/80 text-sm font-medium uppercase tracking-wider mb-2">Est. 2024</p>
+                    <h1 class="text-white font-serif text-4xl font-bold leading-tight">Travel Better,<br />Together.
+                    </h1>
+                </div>
+            </div>
+            <!-- Spacer for fixed left panel on desktop -->
+            <div class="hidden lg:block lg:w-1/2"></div>
+            <!-- Right Split: Content & Widget -->
+            <div class="relative w-full lg:w-1/2 flex flex-col z-10 bg-background-dark">
+                <div class="flex-1 flex flex-col justify-center px-6 py-12 sm:px-12 xl:px-24">
+                    <!-- Hero Text (Desktop) -->
+                    <div class="hidden lg:block mb-10">
+                        <div class="flex items-center gap-2 mb-4">
+                            <span class="h-[1px] w-8 bg-primary"></span>
+                            <span class="text-primary text-xs font-bold uppercase tracking-widest">Premium Group
+                                Travel</span>
+                        </div>
+                        <h1 class="text-white font-serif text-5xl xl:text-6xl font-bold leading-[1.1] mb-6">
+                            Find your tribe,<br />
+                            <span class="text-white/50">share the journey.</span>
+                        </h1>
+                        <p class="text-white/60 text-lg max-w-md leading-relaxed">
+                            Curated experiences for the people who matter most. Ditch the group chat chaos and start
+                            your adventure today.
+                        </p>
+                    </div>
+                    <!-- Vibe Check Widget -->
+                    <div class="bg-[#2a201a] border border-white/5 rounded-2xl p-6 sm:p-8 shadow-2xl shadow-black/50">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-white font-serif text-2xl font-bold">Vibe Check</h3>
+                            <span class="material-symbols-outlined text-primary">graphic_eq</span>
+                        </div>
+                        <!-- Step 1: Who -->
+                        <div class="mb-6">
+                            <label class="block text-white/50 text-xs font-bold uppercase tracking-wider mb-3">Who are
+                                you traveling with?</label>
+                            <div class="flex flex-wrap gap-3">
+                                <button
+                                    class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white border border-primary transition-all">
+                                    <span class="material-symbols-outlined text-[18px]">diversity_3</span>
+                                    <span class="text-sm font-bold">Friends</span>
+                                </button>
+                                <button
+                                    class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#3a2d26] hover:bg-[#4a3a30] text-white/70 hover:text-white border border-transparent transition-all">
+                                    <span class="material-symbols-outlined text-[18px]">family_restroom</span>
+                                    <span class="text-sm font-medium">Family</span>
+                                </button>
+                                <button
+                                    class="group flex items-center gap-2 px-4 py-2.5 rounded-lg bg-[#3a2d26] hover:bg-[#4a3a30] text-white/70 hover:text-white border border-transparent transition-all">
+                                    <span class="material-symbols-outlined text-[18px]">business_center</span>
+                                    <span class="text-sm font-medium">Corporate</span>
+                                </button>
+                            </div>
+                        </div>
+                        <!-- Step 2: Where & When -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div>
+                                <label class="block text-white/50 text-xs font-bold uppercase tracking-wider mb-2">Vibe
+                                    / Destination</label>
+                                <div class="relative group">
+                                    <span
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-primary transition-colors material-symbols-outlined">search</span>
+                                    <input
+                                        class="w-full bg-[#1e1510] border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white text-sm focus:border-primary focus:ring-1 focus:ring-primary placeholder:text-white/20 outline-none transition-all"
+                                        placeholder="e.g. Chill, Kyoto, Surf" type="text" />
+                                </div>
+                            </div>
+                            <div>
+                                <label
+                                    class="block text-white/50 text-xs font-bold uppercase tracking-wider mb-2">When</label>
+                                <div class="relative cursor-pointer group">
+                                    <span
+                                        class="absolute left-3 top-1/2 -translate-y-1/2 text-white/40 group-focus-within:text-primary transition-colors material-symbols-outlined">calendar_month</span>
+                                    <div
+                                        class="w-full bg-[#1e1510] border border-white/10 rounded-xl py-3 pl-10 pr-4 text-white text-sm flex items-center justify-between group-hover:border-white/20 transition-all">
+                                        <span>Select dates</span>
+                                        <span
+                                            class="material-symbols-outlined text-[16px] text-white/30">expand_more</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- CTA -->
+                        <a class="w-full h-14 bg-primary hover:bg-[#c55308] text-white rounded-xl font-bold text-base tracking-wide shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all transform active:scale-[0.98]"
+                            href="signup.html">
+                            <span>Ignite Adventure</span>
+                            <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+                        </a>
+                    </div>
+                    <!-- Social Proof -->
+                    <div class="mt-8 flex items-center gap-4 text-white/40 text-sm">
+                        <div class="flex -space-x-3">
+                            <img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-background-dark"
+                                data-alt="Female traveler portrait"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAIwIUBMk99Um_eV6g8UiyebHErR6zn5-X5MgocliEjn3ZF1deLncu57AutY7nHOpZGad05HFNjWv0AX-hu6SCkoQAGaWiLwokSbvLrENILeKo49yBfXzYchy9-wR805xJ6KfJ5j6wG89YV4ueig-8vYfLyKlQkcn_LX8yA6vKdZ-Aaex4Sv-slZmBy5zHEmrolt5TQ1r7XcO9L9SfeWVOt_4RsoApdrxaKmNFrKNNLkJjMnh5cAqbwJsli8HQxLeISXIe7deZTtw" />
+                            <img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-background-dark"
+                                data-alt="Male traveler portrait"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDni6CTW2T1KZA9rQw7rVpQuSRYgsEubZHDCtgtNIcdFghzOfXClqu76BHutxrJifnpQLGF_ymnc3tSCKFE5WoPMz2QKQIK3AgSHOKomLet4qHYPbaltnhC1LXC2Znmsmg1CmTrahxeneCujr1GQcQOhTj6KbnVx3IN_INLvQHqm4q3wB3SQW71FQYxB6km3gbc2pWomkiOA-pjU8g7D3r9sYcI6JA59ykhzlWV4zeAK_5REIwtWsgjT5mZKtT9ByFKESWjkuN4GQ" />
+                            <img alt="User avatar" class="w-8 h-8 rounded-full border-2 border-background-dark"
+                                data-alt="Smiling traveler portrait"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBQc0Igpv5Gx460LlaXQBps_bcITSubrVlfbR4SHfKdJYApXuwQ16JY5yUWkISJgRnha0TqkbYdjVSL0DED6H7UKcaJ5q-Xd0rQbv76laO6CecP6Yisba15cq4wV0xPNQzgsO7lKf8JqWr1RSx1OzSd1q95jZMEUDMD2XBjUqv6LNd-I5xdxO6cFmI0PA-hFoI5TSAvS5x7PuMFbjbpvsjOGX7YdPSgjIG2XIhU3YQF4_fyN-z3LRWXdJrOSg2y8J_7UDZQXWL9A" />
+                            <div
+                                class="w-8 h-8 rounded-full border-2 border-background-dark bg-[#3a2d26] flex items-center justify-center text-[10px] font-bold text-white">
+                                +2k</div>
+                        </div>
+                        <p>Trusted by <span class="text-white font-medium">10,000+</span> travelers.</p>
+                    </div>
+                </div>
+                <!-- Trending Destinations Section (Within Right Panel content flow) -->
+                <div class="px-6 sm:px-12 xl:px-24 pb-20" id="how-it-works">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-white font-serif text-2xl font-bold">Trending Now</h3>
+                        <a class="text-primary text-sm font-medium hover:text-white transition-colors flex items-center gap-1"
+                            href="#">
+                            View All <span class="material-symbols-outlined text-[16px]">arrow_right_alt</span>
+                        </a>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Card 1 -->
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer">
+                            <img alt="Tulum beach house"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                data-alt="Modern wooden cabana on a tropical beach in Tulum"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAAoZ3PmakpPnj0b6TIHYRqpo9qtOcuw43YhLJp_b5EQ7ZweLcDKKhvUiyGt2phAZYnxhfFsmsbR9WfXu65ZD8zXchakBgrDlHDMVh2z-MiB1dLu-Izb8PEh8Y333nQMiy0JGZt_Uw8WKo8rL-Bbo-tZ-UDe8MS6hsRLWM3DwY3rS9XKcmj5N6HfkZ-VF8TKHNcRnj4OMA6lbplvmyeP-l4nXfEyZSE0Zj8Rr78RdFcC5ni4W6qyZsv1twzejkXdeQoV0mjOLRkfA" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute top-3 right-3 glass-card px-2 py-1 rounded-lg flex items-center gap-1">
+                                <span
+                                    class="material-symbols-outlined text-primary text-[14px] fill-1">local_fire_department</span>
+                                <span class="text-white text-xs font-bold">98% Match</span>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h4 class="text-white font-bold text-lg leading-tight mb-1">Tulum, Mexico</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="inline-block w-2 h-2 rounded-full bg-green-500"></span>
+                                    <span class="text-white/80 text-xs">Party Vibe</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 2 -->
+                        <div class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer">
+                            <img alt="Kyoto street"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                data-alt="Traditional Japanese street in Kyoto with lanterns"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgoreO9apWaxuyoY_wstMucOe0M5pX_Kskum364KW0btdW8n0BS5LeHC5BhhSpcwES40EsrB3rOZ9BYIMIv4eMF9MT7n9I8EMjeT-SKnW4F_wj8fQJBxvxl6vds3OkfhLlwCSy8RxnlOYS-5qghUk3k1-ZA199UmriOyAuoJzir2MmXwezc67sO8_rOgINjaDjDBZDbPneFBOEHiAqbemwSc5f4kpNg_svSsgLOSGAcoBWoOC9HwDJcyzt9MKHd4BKcqtezbV47Q" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute top-3 right-3 glass-card px-2 py-1 rounded-lg flex items-center gap-1">
+                                <span class="material-symbols-outlined text-teal-400 text-[14px]">spa</span>
+                                <span class="text-white text-xs font-bold">Zen</span>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h4 class="text-white font-bold text-lg leading-tight mb-1">Kyoto, Japan</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="inline-block w-2 h-2 rounded-full bg-blue-400"></span>
+                                    <span class="text-white/80 text-xs">Cultural Immersion</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card 3 -->
+                        <div
+                            class="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer sm:col-span-2">
+                            <img alt="Iceland landscape"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                data-alt="Foggy mountain landscape in Iceland with green moss"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7H0XXCnPZtgeIJ5J0cVGT_BW1vb-QhlH_6OXZZFdrKsCEVMJH9Cw9ZPguIS7Q1il7qvVM4oTRrcTPNCCjpt-bQVly8GlhsMcH0-bkkjE08OZoLEaAE3CwGg737gr5Sxu5Nf76Poj08Vr0Buu4A2n1xZ4CXvJXJiTssn6sEZ1AfdUXOijRMrvnwwZODmJUnj-Zvf5GtX9kNFSmXpXKl_yL7Lgkfa6QDWh-O83eOnL9JeofF0Gjgpu0Z3CQDlY9Ih9fTuUMfhs62g" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent">
+                            </div>
+                            <div class="absolute top-3 right-3 glass-card px-2 py-1 rounded-lg flex items-center gap-1">
+                                <span class="material-symbols-outlined text-yellow-400 text-[14px]">landscape</span>
+                                <span class="text-white text-xs font-bold">Adventure</span>
+                            </div>
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <h4 class="text-white font-bold text-lg leading-tight mb-1">Reykjavik, Iceland</h4>
+                                <div class="flex items-center gap-2">
+                                    <span class="inline-block w-2 h-2 rounded-full bg-purple-500"></span>
+                                    <span class="text-white/80 text-xs">Nature &amp; Exploration</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer Simple -->
+                <div class="mt-auto border-t border-white/5 py-8 px-6 sm:px-12 xl:px-24">
+                    <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
+                        <p class="text-white/30 text-xs">© 2024 Tribe Travel Inc.</p>
+                        <div class="flex gap-6">
+                            <a class="text-white/30 hover:text-white text-xs transition-colors" href="#">Privacy</a>
+                            <a class="text-white/30 hover:text-white text-xs transition-colors" href="#">Terms</a>
+                            <a class="text-white/30 hover:text-white text-xs transition-colors" href="#">Support</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

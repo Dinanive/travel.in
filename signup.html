@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Join Tribe - Premium Group Travel</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "background-dark": "#221710",
+                        "surface": "#2d241e",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"],
+                        "serif": ["Playfair Display", "serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(42, 32, 26, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-dark font-display antialiased text-white selection:bg-primary selection:text-white min-h-screen flex flex-col items-center justify-center p-6">
+    <!-- Fixed Navigation Header -->
+    <header
+        class="fixed top-0 z-50 w-full bg-background-dark/85 backdrop-blur-md border-b border-white/5 transition-all duration-300">
+        <div class="mx-auto px-4 sm:px-6 lg:px-8 max-w-[1440px]">
+            <div class="flex h-20 items-center justify-between">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center gap-2 group">
+                    <div class="text-primary group-hover:scale-110 transition-transform">
+                        <span class="material-symbols-outlined text-[32px] fill-1">camping</span>
+                    </div>
+                    <h2 class="text-white text-2xl font-serif font-bold tracking-tight">Tribe</h2>
+                </a>
+                <!-- Desktop Links -->
+                <nav class="hidden md:flex items-center gap-8">
+                    <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                        href="discovery.html">Destinations</a>
+                    <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                        href="index.html#how-it-works">How it Works</a>
+                    <a class="text-white/80 hover:text-primary text-sm font-medium transition-colors"
+                        href="vault.html">Journal</a>
+                </nav>
+                <!-- Auth Actions (Already on signup, just show login) -->
+                <div class="flex items-center gap-3">
+                    <a class="h-10 px-6 flex items-center justify-center rounded-full border border-white/10 hover:border-white/30 hover:bg-white/5 text-white text-sm font-bold transition-all"
+                        href="login.html">
+                        Login
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Abstract Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-[10%] -right-[10%] w-[40%] h-[40%] bg-primary/20 rounded-full blur-[120px]"></div>
+        <div class="absolute bottom-[20%] -left-[5%] w-[30%] h-[30%] bg-orange-900/30 rounded-full blur-[100px]"></div>
+    </div>
+
+    <!-- Signup Card -->
+    <div class="relative w-full max-w-[480px] glass-card rounded-3xl p-8 sm:p-10 shadow-2xl animate-fade-in-up">
+        <!-- Logo -->
+        <div class="flex flex-col items-center mb-8">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="text-primary group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-[40px] fill-1">camping</span>
+                </div>
+                <h2 class="text-white text-3xl font-serif font-bold tracking-tight">Tribe</h2>
+            </a>
+            <p class="text-white/50 text-sm mt-3 font-medium text-center">Your journey to the world's most curated group
+                experiences begins here.</p>
+        </div>
+
+        <!-- Form -->
+        <form class="space-y-5" onsubmit="event.preventDefault(); window.location.href='discovery.html'">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-white/70 text-[10px] font-bold uppercase tracking-widest mb-2 px-1">First
+                        Name</label>
+                    <input type="text" required
+                        class="w-full bg-black/30 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/10"
+                        placeholder="John" />
+                </div>
+                <div>
+                    <label class="block text-white/70 text-[10px] font-bold uppercase tracking-widest mb-2 px-1">Last
+                        Name</label>
+                    <input type="text" required
+                        class="w-full bg-black/30 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/10"
+                        placeholder="Doe" />
+                </div>
+            </div>
+            <div>
+                <label class="block text-white/70 text-[10px] font-bold uppercase tracking-widest mb-2 px-1">Email
+                    Address</label>
+                <input type="email" required
+                    class="w-full bg-black/30 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/10"
+                    placeholder="john@example.com" />
+            </div>
+            <div>
+                <label class="block text-white/70 text-[10px] font-bold uppercase tracking-widest mb-2 px-1">Create
+                    Password</label>
+                <input type="password" required
+                    class="w-full bg-black/30 border border-white/10 rounded-xl py-3 px-4 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-white/10"
+                    placeholder="••••••••" />
+            </div>
+
+            <div class="flex items-start gap-3 px-1">
+                <input type="checkbox" required
+                    class="mt-1 size-4 rounded bg-black/30 border-white/10 text-primary focus:ring-primary transition-all cursor-pointer" />
+                <p class="text-xs text-white/40 leading-relaxed font-medium">
+                    I agree to the <a href="#" class="text-white/60 hover:text-primary underline">Terms of Service</a>
+                    and <a href="#" class="text-white/60 hover:text-primary underline">Privacy Policy</a>.
+                </p>
+            </div>
+
+            <button type="submit"
+                class="w-full h-14 bg-primary hover:bg-[#b54a05] text-white rounded-xl font-bold text-base tracking-wide shadow-lg shadow-primary/25 flex items-center justify-center gap-2 transition-all transform active:scale-[0.98] mt-6 hover:scale-[1.02]">
+                <span>Create Account</span>
+                <span class="material-symbols-outlined text-[20px]">person_add</span>
+            </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="relative my-8">
+            <div class="absolute inset-0 flex items-center">
+                <div class="w-full border-t border-white/10"></div>
+            </div>
+            <div class="relative flex justify-center text-[10px]">
+                <span class="px-2 bg-[#2d241e] text-white/30 font-bold uppercase tracking-[0.2em]">Social Signup</span>
+            </div>
+        </div>
+
+        <!-- Social Buttons -->
+        <div class="grid grid-cols-2 gap-4">
+            <button
+                class="flex items-center justify-center gap-2 h-12 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" class="w-5 h-5"
+                    alt="Google">
+                <span class="text-xs font-bold">Google</span>
+            </button>
+            <button
+                class="flex items-center justify-center gap-2 h-12 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
+                <span class="material-symbols-outlined text-[20px]">apple</span>
+                <span class="text-xs font-bold">Apple</span>
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 text-center">
+            <p class="text-white/50 text-sm">
+                Already have an account?
+                <a href="login.html" class="text-primary font-bold hover:underline">Log in</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

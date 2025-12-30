@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>The Post-Trip Vault</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Configuration -->
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#da5e0b",
+                        "background-light": "#f8f7f5",
+                        "background-dark": "#221710",
+                        "surface-dark": "#2f221a",
+                        "surface-light": "#ffffff",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "2xl": "1rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for clean horizontal scrolling */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50 font-display min-h-screen flex flex-col selection:bg-primary selection:text-white">
+    <!-- Top Navigation -->
+    <nav class="sticky top-0 z-50 border-b border-[#493222]/30 bg-background-dark/80 backdrop-blur-md">
+        <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a class="flex items-center gap-3" href="index.html">
+                    <div class="size-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">travel_explore</span>
+                    </div>
+                    <h2 class="text-white text-lg font-bold tracking-tight">Tribe</h2>
+                </a>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-8">
+                    <a class="text-slate-300 hover:text-white text-sm font-medium transition-colors"
+                        href="discovery.html">Trips</a>
+                    <a class="text-white text-sm font-medium transition-colors" href="itinerary.html">Itinerary</a>
+                    <a class="text-slate-300 hover:text-white text-sm font-medium transition-colors"
+                        href="expenses.html">Budget</a>
+                    <a class="text-slate-300 hover:text-white text-sm font-medium transition-colors"
+                        href="canvas.html">Canvas</a>
+                </div>
+                <!-- Right Actions -->
+                <div class="flex items-center gap-4">
+                    <a class="hidden sm:flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold transition-all shadow-lg shadow-primary/20"
+                        href="signup.html">
+                        <span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        <span>Upload Media</span>
+                    </a>
+                    <a class="h-9 w-9 rounded-full bg-cover bg-center border-2 border-primary/30" href="login.html"
+                        data-alt="User profile picture"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB-VaE9ERxbvO8DmAOWcY7KC72ZI9M_vnCFqIi-6PwEoJq_jKBDd2DDxGKhnXhn9ZSz0TisHycM2elAgExs_iEfdxb1w7Z1sx1xlxWVkDFMIi4R4zAi6yAO1odDgMMYMyxXr9efkIhfLHemzrucMX_uRW3C3iSffKkPAo7Zo0sQ5lGU7TgLLv7167x6akkAM8MEafhhY-F5VhHWpzySxciMvVO06vWLIG_Zj8J2sTym7MBszorBWP4D7aW2fbuPflEnB1gz-P1ldQ')"></a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content Area -->
+    <main class="flex-grow flex flex-col">
+        <!-- Hero Section -->
+        <section class="relative w-full h-[500px] bg-background-dark overflow-hidden flex items-end">
+            <!-- Background Image with Gradient Overlay -->
+            <div class="absolute inset-0 z-0 bg-cover bg-center"
+                data-alt="Blurred background of the Amalfi coast sunset"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDyxSn9q2Yh00JcbFGUytfVJasLjRQqK0DxJhnt1Qwuuuve9Fg1k-t5bqc3M7hqWRn1wqDcj8x_YPIKPAUYfGsnQ5QBtyZycal-p1yQ5x1kuzrNscI3_FgH9SzgcyEtfAvuSH-zuTX84W4wKtPcgaZkHAwaje9R39OecMUIY-oHxrqJKS0kxBxT-L5fIfkfUflZPrRC7IMd6Ny9SQoaKL85nhMQTobyyr4bB1yG2PcMR4v-vz_VPYEdV9Y2ty4jK0arLDXkgkEDFg')">
+            </div>
+            <div
+                class="absolute inset-0 z-10 bg-gradient-to-t from-background-dark via-background-dark/60 to-transparent">
+            </div>
+            <div class="absolute inset-0 z-10 bg-background-dark/20 backdrop-blur-[2px]"></div>
+            <div class="relative z-20 w-full max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+                    <div class="flex flex-col gap-2">
+                        <div class="flex items-center gap-2 text-primary/80 mb-1">
+                            <span class="material-symbols-outlined text-sm">calendar_month</span>
+                            <span class="text-sm font-semibold uppercase tracking-wider">August 12 - 20, 2024</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight">
+                            Amalfi Coast<br />Summer '24
+                        </h1>
+                        <p class="text-slate-300 text-lg mt-2 flex items-center gap-4">
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">group</span> 8 Travelers</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-500"></span>
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">photo_library</span> 452 Photos</span>
+                            <span class="w-1 h-1 rounded-full bg-slate-500"></span>
+                            <span class="flex items-center gap-1"><span
+                                    class="material-symbols-outlined text-sm">location_on</span> Italy</span>
+                        </p>
+                    </div>
+                    <button
+                        class="flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/10 text-white px-6 py-3 rounded-lg text-base font-bold transition-all group">
+                        <span>View Slideshow</span>
+                        <span
+                            class="material-symbols-outlined group-hover:translate-x-1 transition-transform">play_arrow</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Stats Section -->
+        <section class="border-y border-[#493222]/30 bg-surface-dark/50">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Stat Card 1 -->
+                    <div
+                        class="flex items-center gap-4 p-5 rounded-xl bg-background-dark border border-[#493222] hover:border-primary/40 transition-colors group">
+                        <div
+                            class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">flight_takeoff</span>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm font-medium">Miles Traveled</p>
+                            <p class="text-white text-2xl font-bold">3,402 <span
+                                    class="text-sm text-slate-500 font-normal">mi</span></p>
+                        </div>
+                    </div>
+                    <!-- Stat Card 2 -->
+                    <div
+                        class="flex items-center gap-4 p-5 rounded-xl bg-background-dark border border-[#493222] hover:border-primary/40 transition-colors group">
+                        <div
+                            class="size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">restaurant</span>
+                        </div>
+                        <div>
+                            <p class="text-slate-400 text-sm font-medium">Most Expensive Meal</p>
+                            <p class="text-white text-2xl font-bold">€180 <span
+                                    class="text-sm text-slate-500 font-normal">@ Da Michele</span></p>
+                        </div>
+                    </div>
+                    <!-- Stat Card 3 -->
+                    <div
+                        class="flex items-center gap-4 p-5 rounded-xl bg-background-dark border border-[#493222] hover:border-primary/40 transition-colors group relative overflow-hidden">
+                        <!-- Subtle BG image for top photo -->
+                        <div class="absolute inset-0 bg-cover bg-center opacity-10"
+                            data-alt="Faint background of top voted photo"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD7kc-YI-b6Ha86AUtJBygx2Z80FbMhqZqat5kHeh6bn4nEjtOl_YZDppjYq71kcd3peRlWHLZAydtoFDa5gt9ZuKopkgQWK8ntnQ8TiE6gUOmbJCi1C6gLjYAGaRrym4aL746okvDb3Tl5nMWjNP1Fbo233fm-_uCQQ-s8pdP1Z5-_ulvFH3OgbqeU-Z0ZDVexaGhLn6BhBzgUNTW9C10M9ZTQy4V0viBrGGjCqTJsbsQawKB-zCko5cm29Szzzme0QK7y92Txew')">
+                        </div>
+                        <div
+                            class="relative z-10 size-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
+                            <span class="material-symbols-outlined">trophy</span>
+                        </div>
+                        <div class="relative z-10">
+                            <p class="text-slate-400 text-sm font-medium">Top Voted Memory</p>
+                            <p class="text-white text-xl font-bold truncate">Sunset at Positano</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Filters & Sort -->
+        <section class="sticky top-16 z-40 bg-background-dark/95 backdrop-blur-sm border-b border-[#493222]/30 py-4">
+            <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+                <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 sm:pb-0">
+                    <button
+                        class="whitespace-nowrap px-4 py-2 rounded-full bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/10">All
+                        Media</button>
+                    <button
+                        class="whitespace-nowrap px-4 py-2 rounded-full bg-[#3a2a20] text-slate-300 hover:text-white hover:bg-[#493222] text-sm font-medium transition-colors">Photos
+                        Only</button>
+                    <button
+                        class="whitespace-nowrap px-4 py-2 rounded-full bg-[#3a2a20] text-slate-300 hover:text-white hover:bg-[#493222] text-sm font-medium transition-colors">Videos
+                        Only</button>
+                    <button
+                        class="whitespace-nowrap px-4 py-2 rounded-full bg-[#3a2a20] text-slate-300 hover:text-white hover:bg-[#493222] text-sm font-medium transition-colors">By
+                        Location</button>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-400">
+                    <span class="material-symbols-outlined text-[18px]">sort</span>
+                    <span class="hidden sm:inline">Sort by:</span>
+                    <select
+                        class="bg-transparent border-none text-white font-medium focus:ring-0 cursor-pointer text-sm p-0 pr-6">
+                        <option>Date Taken</option>
+                        <option>Most Liked</option>
+                        <option>Uploader</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <!-- Masonry Grid Vault -->
+        <section class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow">
+            <!-- Tailwind CSS Columns for Masonry Layout -->
+            <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
+                <!-- Item 1 (Portrait) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="Narrow street in Positano"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Portrait photo of a narrow street in Positano"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6BWCRuUojbE5tmLZyU31LsMl9hbFrNXu5k_jAMbf9ZlKh4ZBLDVMUxn_9Il4CDmYGWfO308-uMs2ISPuQZBepcjYCjsvHesxsW-V9ucriUXQRALHjvWgAuokiBkbsFZELxY443Aw_9tR7Zc1u-WS8O5a1y0S__aCqE8zmI5zTZrjYNm2VeQkHAh2pbQgeInpTnfo5Yv5k511IFMMW5kt1vBw1xCiqWwe7BN1N02lYlGhkVip9PS6JQ1yEQje8P6B9HgmHALHYIA" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Hidden Alleyways</p>
+                        <p class="text-xs text-slate-300">Added by Sarah • Positano</p>
+                        <div class="flex items-center gap-3 mt-3">
+                            <button
+                                class="size-8 rounded-full bg-white/20 hover:bg-primary text-white flex items-center justify-center backdrop-blur-md transition-colors">
+                                <span class="material-symbols-outlined text-sm">favorite</span>
+                            </button>
+                            <button
+                                class="size-8 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center backdrop-blur-md transition-colors">
+                                <span class="material-symbols-outlined text-sm">download</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 (Square) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="Group selfie at dinner"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Square photo of group selfie at dinner"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuANGp49RMRDnjPpWepwgPnuDxRxPvxqMn8q5SbjTx9Pfxrm-CG2oznxkwh-oE2pRJC3GOsVnjvlk9511P2LTvjmFsCxVNdtm1gKwkdjRZGoiA-nPs09nh5ZfJa3t9s3FiBwgGh0Ea1O0R_6GButmLfoEEIyf5HKbfcPViyiERKcdirxVKWZU9Q5u70kz6YZ2PBcJkXwOG__KXMM4Bp2DBEYSG94G1LN-rh0RkHvBpmKLUTa5rRLwHNj7ohaORBUMzP0P1EOfSaLdA" />
+                    <div
+                        class="absolute top-3 right-3 bg-black/50 backdrop-blur-md rounded-full px-2 py-1 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-primary text-xs fill-current">favorite</span>
+                        <span class="text-white text-xs font-bold">24</span>
+                    </div>
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Pizza Night!</p>
+                        <p class="text-xs text-slate-300">Added by Mike • Naples</p>
+                    </div>
+                </div>
+                <!-- Item 3 (Landscape Video) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <div
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-12 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform z-10">
+                        <span class="material-symbols-outlined text-white text-2xl">play_arrow</span>
+                    </div>
+                    <img alt="Boat ride view"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Landscape thumbnail of a video from a boat ride"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3kinPbbmBVWojJ-xiXDRDSIoow7bupfMzKYHXX9hNJ1GCWH3iThiaOmKra8XetsRvdluenyt5FMxgt0RMbbJPDGOznEnEFa1kbkfJwPo8LlG6o9f09_H4m2J7SJjqI7F1S24yEjZOq2pPJXsYka0TDE3Lkry-qmvi1wdBtXemheQkroqp4toOiE4OXuIEQkRORXKWszzmF9v_jHoXbwK9lyNFTrYMrcl7ZJbUq7fVqwqapkVXJdGGn3DcrroAy_soqDyvIZsCEw" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 z-20">
+                        <p class="text-white font-bold">Boat Day Highlights</p>
+                        <p class="text-xs text-slate-300">02:45 • Capri</p>
+                    </div>
+                </div>
+                <!-- Item 4 (Tall Portrait) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="View from the villa balcony"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Tall portrait photo of the view from the villa balcony"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Slj5xgsHh4-I5p4vHUJUQ7S6Fu78pLHVQ8NsCMGTEGemTKMXl16J2cC435CsQHCx-B5YN5NwRT2NIaYTpxWInRBkJmbV9joxH0SXJz6eLCUXE_2xKVlwL8vaXmcH9RokwdPLxEJMLtb6HWmhXEFnxhRI7c40bTDjwJ8H583S6bVtRZMbpUr5vxxCDCrpex2f6t18pqNGcTOjXd7rp0i9Ei35DXlHgliH2q6uXfwTh0iHQLYfO-eC_SCF262e-PgCTrtG5rnsmg" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Morning Coffee View</p>
+                        <p class="text-xs text-slate-300">Added by Jessica • Ravello</p>
+                    </div>
+                </div>
+                <!-- Item 5 (Square) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="Map of the trip route"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-location="Amalfi Coast Map"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDTKOovMJp1nnrhB5i_Wr3M33nSL7jG0VANJsBw1_0DddlESKriwC0A1ZaVapR7axZ1ZTcur3aA8PbLS1Vf2rtJHzbwGcGgP-adwY7lr21-mJHhoaXPB2mxXRE4bWbMutW4xJHrgDC_-Jbi2bvXXdwxXQ74U-SuIA_wLvRfIk6aQrSbZz84y2kTqnFRj1GUhJ1DZuqdVaL2Gk6ve-2Zf76aM_AY0r87pyUwcexnAdwlthMAXrOMI_Avc6x-9Dd5H3UHWHZOoaQhA" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Our Route</p>
+                        <p class="text-xs text-slate-300">Added by Admin</p>
+                    </div>
+                </div>
+                <!-- Item 6 (Standard Landscape) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="Lemon groves"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Landscape photo of lemon groves"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuACUD7t1SzAvObTHmEkRIbFPA-Z2lb3vPrKFXUTe2E1dyeYgwmWJmAEELwt1qx8EdRusYiTNsH2-XDPnAMKC7nXBI-5KrG1dH6QnYQ3_4BAcndQkxHeYohWkAFY2QEJ834e0yDOQSqZiVuvr7B2K4tRblLEX1AKnk2b64BcLiCkm4Zh7mm3pm1ShR3j8imWWBa9bXFavVLF_C-PNePm5FsGUf1y5ZzrIwZRp1ablELbI5Zyr3FcWPnOWv3w_Ebsld2C8s4cZOnLVA" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Lemons everywhere 🍋</p>
+                        <p class="text-xs text-slate-300">Added by Tom • Sorrento</p>
+                    </div>
+                </div>
+                <!-- Item 7 (Portrait) -->
+                <div class="break-inside-avoid relative group rounded-xl overflow-hidden bg-surface-dark">
+                    <img alt="Pasta making class"
+                        class="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                        data-alt="Portrait photo of a pasta making class"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Lh-JVwF1SuYQkobHNPyrYUlg8U-vYbsr1DlEx8C-QnMXaNqNZqAwVdNGrHXUdcdmhhmqSf2kVGxbOwOsLKuinyNbkPIpEuc6ZRITZX3c8Axm_kHr26FNakX90tou7L43oHFDwSmxdYTjrkf0pqFH4j5_E_BDeSq_WO_2PvfXGzc9S6N85sYoovCk81HKaV8-lDL7y8N8Ydx71B2K5ptPXmcI3JyuL9XQ7Ok5Bnzl_RsGeOX1hE2n19Q1qDgTYBtN61QdDHwAhQ" />
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
+                        <p class="text-white font-bold">Cooking Class</p>
+                        <p class="text-xs text-slate-300">Added by Sarah • Amalfi</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Load More Trigger -->
+            <div class="flex justify-center mt-12 mb-8">
+                <button
+                    class="text-slate-400 hover:text-white flex flex-col items-center gap-2 text-sm font-medium transition-colors">
+                    <span class="material-symbols-outlined animate-bounce">expand_more</span>
+                    Scroll for more memories
+                </button>
+            </div>
+        </section>
+        <!-- Rebook CTA Footer -->
+        <section class="bg-[#1a120b] border-t border-[#493222] py-16">
+            <div class="max-w-[960px] mx-auto px-4 text-center">
+                <div class="inline-flex items-center justify-center p-3 rounded-full bg-primary/10 text-primary mb-6">
+                    <span class="material-symbols-outlined text-3xl">flight_takeoff</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-black text-white mb-4 tracking-tight">Ready for the next adventure?
+                </h2>
+                <p class="text-slate-400 text-lg mb-8 max-w-xl mx-auto">Start planning the 2025 reunion. We've saved
+                    your preferences and traveler profiles to make booking a breeze.</p>
+                <button
+                    class="inline-flex items-center justify-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-xl text-lg font-bold shadow-xl shadow-primary/20 transition-all hover:-translate-y-1">
+                    <span>Rebook for Next Year</span>
+                    <span class="material-symbols-outlined">arrow_forward</span>
+                </button>
+                <div
+                    class="mt-8 flex items-center justify-center gap-6 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Partner airline logo"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCfzKTcsgs9TmLSO4z00hvveMWgZSDCMJgqQiDhobbcZ0vkIOpLG2vtvwBVnYE8jjhP1_OytwaKjFgnHZQsKtrZ5FDApSd6O66Vf3usXyO27TzjoQO1DzADGhV2GOmeSFS6i5YoPZcazO2wxtebv46DgqflJIodYrcajFP2LOIo_9D64geNFDKicaAFvZd20ao-88Ft51O8CrIiktpN7MnjpXvNnw4NxlE_0z4KWEFH7VlBEyu7XUbsdyEWjjHIjnysX2MC79iJKw')">
+                    </div>
+                    <div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Hotel partner logo"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBwHUJCx0jJDyGEVndONNsStNYRBtbnqCbTbT9roVctrLmH48drqzLYiXYUfBD52xJMy3bevPaz4F7oq2yQl-ZTKFxY6R_HXXKWHHOkcowTgppP9Bb4AAlVtcptb3AVJA4RI4kqDiS3pFgQjHLhSSw5G8sC4VcPe-sn2GDYDYZ_rZ5Ldt_KyZRstsDh3mEs1HKutQv09qa6NK9QYEFAH06kLw6Inmht2ms-rutOVHgjfmrvex4AxvQXN3VHuqx9rlydAOy_T3MxYA')">
+                    </div>
+                    <div class="h-8 w-24 bg-contain bg-center bg-no-repeat" data-alt="Travel insurance logo"
+                        style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD6jYZYkOI1Hpv0V1uSuBJB6z7fqu6uECUaeIr_0MWdjPH5GpLqaMp0MiJvCYo7lrSn36C6FnorhcCBvGlQj7hd--cfqVLUbgOo0jum8-dtRBN8L2obb6oTtjFhjwDDCmix5ZzM6q4phFdJFb4Yr5uJR3f92D0i2SlzNGAOY1JoCs36_sJskzSHGBiyaGC6MfaSs5fnsRaJ1C2xazMmniURQjoDgduKpP6-8sBwBXdRU57uwmguvM8aW3TZeWxI7L_FiVmioQgtSA')">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
